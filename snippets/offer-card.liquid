@@ -1,0 +1,66 @@
+<style>
+  .offer-card{
+    padding-top: 8px;
+  }
+  .offer-tag{
+    width: 18px;
+    margin-right: 8px;
+  }
+  .offer-card span{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #4D4D4D;
+  }
+  .offer-list{
+    padding: 15px 0 0 0;
+  }
+  .offer-list li{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #6D7278;
+  }
+  @media (max-width: 769px){
+      .offer-list li{
+          font-family: 'Poppins';
+          font-style: normal;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 18px;
+          display: flex;
+          align-items: center;
+          letter-spacing: 0.18px;
+          color: #232323;
+      }
+      .offer-card span{
+          font-family: 'Poppins';
+          font-style: normal;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 21px;
+          display: flex;
+          align-items: center;
+          letter-spacing: 0.18px;
+          color: #313332;
+      }
+   }
+</style>
+
+{% assign available_offers = product.metafields.my_fields.available_offers | split: '<!--split--!>' %}
+{% if product.metafields.my_fields.available_offers != blank %}
+<div class="offer-card">
+  <span><img class="offer-tag" src="https://cdn.shopify.com/s/files/1/0007/2659/7747/files/tag.png?v=1632674763">Available offers </span>
+  <ul class="offer-list">
+    <li>{{ available_offers[0] }} </li>
+    <li>{{ available_offers[1] }}</li>
+    <li>{{ available_offers[2] }}</li>
+    <li>{{ available_offers[3] }}</li>
+    <li>{{ available_offers[4] }}</li>
+  </ul>
+</div>
+
+<hr class="product-division" size="1px" color="#E3E3E3">
+{% endif %}

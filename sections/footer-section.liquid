@@ -1,0 +1,401 @@
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<style>
+  @media (min-width: 748px){
+     .division{ 
+       display: none;
+     }
+    .logo-footer,.contact-footer{
+       width: 296px;
+    }
+    .footer-container{
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .abt_icons .icons a {
+    margin-right: 8px;
+ }
+  .paymentOption {
+      margin-top: 16px;
+  }
+  .footer-container{
+    padding: 50px 38px;
+  }
+  .brand_logo{
+    width: 100px;
+    padding-bottom: 10px;
+  }
+  .footerPara,.footerPara span,.contact_content{
+    font-family: Poppins !important;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    font-size: 14px !important;
+    margin: 10px 0 !important;
+    color: #6D7278;
+    letter-spacing 0.48px;
+	line-height 18px;
+  }
+  .footerHeader{
+    font-family: Poppins !important;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px !important;
+    color: #232323;
+    text-transform: uppercase;
+  }
+  .paymentImg{
+    width: 32px;
+    margin-right: 5px;
+  }
+  .fab{
+    font-size: 20px;
+    color: #6D7278;
+  }
+  .division{
+    color: #6D7278;
+  }
+  @media (max-width: 767px){
+    .footerHeader {
+    margin-top: 16px;
+    }
+    .abt_icons .icons a {
+          margin-right: 8px;
+    }
+    .footer_links {
+      margin: 10px 0;
+    } 
+    .footer_links li a{
+      margin-right: 8px;
+    } 
+    .footer_links li {
+      margin: 5px 0 !important;
+    }
+    .footer-container {
+        padding: 16px 10px;
+    }
+  	.footerPara,.footerPara span,.contact_content{
+      font-size: 12px !important;
+    }
+    .column{
+       display: flex;
+       justify-content: left;
+       flex-wrap: wrap;
+    }
+    .abt_icons{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .paymentOption {
+      margin-top: 0px;
+  }
+  }
+  .mailinfo{
+    color: #56ABB0;
+  }
+</style>
+
+<div class="footer-container">
+  <div class="logo-footer">
+   <div class="about">
+    {% for block in section.blocks %}
+    {% case block.type %}
+    {% when 'image' %}
+    {% if block.settings.footer_logo != blank %}
+    	<span>
+          <img class="brand_logo" src="{{ block.settings.footer_logo | img_url: 'master'}}" style="width: 100px;padding-bottom: 10px;" />
+     	</span>
+    {% endif %}
+    <p class="footerPara">{{ block.settings.copyright_text }}</p>
+    
+  <hr class="division">
+     
+    {% when 'url' %}
+     {% if block.settings.mastercard_img != blank %}
+      <div class="desk" style="height: 20px;"></div>
+      <div class="abt_icons">
+        <div class="icons">
+          <a href="{{ block.settings.facebook_link }}"><i class="fab fa-facebook-square icons"></i></a>
+          <a href="{{ block.settings.twitter_link }}"><i class="fab fa-twitter icons "></i></a>
+          <a href="{{ block.settings.youtube_link }}"><i class="fab fa-youtube icons"></i></a>
+          <a href="{{ block.settings.instagram_link }}"><i class="fab fa-instagram icons"></i></a>
+      </div>
+      <div class="paymentOption">
+            <img src="{{ block.settings.mastercard_img |  img_url: 'master'}}" alt="" class="paymentImg" />
+            <img src="{{ block.settings.visa_img |  img_url: 'master'}}" alt="" class="paymentImg" />
+      </div>
+      </div>
+     {% endif %}
+    </div>
+  </div>
+  
+<!--   <hr class="division"> -->
+	
+    {% when 'text' %}
+    <div class="shop-footer">
+      <p class="footerHeader">{{ block.settings.column_heading }}</p>
+      <ul class="column footer_links">
+        {% assign content1 = block.settings.sub_heading1 %}
+      	{% assign link1 = block.settings.subheading1_link %}
+        <li class="footerPara column_content">
+          <a href="{{ link1 }}"><span> {{ content1 }}</span></a>
+        </li>
+        {% assign content2 = block.settings.sub_heading2 %}
+      	{% assign link2 = block.settings.subheading2_link %}
+        <li class="footerPara column_content">
+          <a href="{{ link2 }}"><span> {{ content2 }}</span></a>
+        </li>
+        {% assign content3 = block.settings.sub_heading3 %}
+      	{% assign link3 = block.settings.subheading3_link %}
+        <li class="footerPara column_content">
+          <a href="{{ link3 }}"><span> {{ content3 }}</span></a>
+        </li>
+        {% assign content4 = block.settings.sub_heading4 %}
+      	{% assign link4 = block.settings.subheading4_link %}
+        <li class="footerPara column_content">
+          <a href="{{ link4 }}"><span> {{ content4 }}</span></a>
+        </li>
+        {% assign content5 = block.settings.sub_heading5 %}
+      	{% assign link5 = block.settings.subheading5_link %}
+        <li class="footerPara column_content">
+          <a href="{{ link5 }}"><span> {{ content5 }}</span></a>
+        </li>
+      </ul>
+    </div>
+	
+    {% when 'richtext' %}
+    <div class="contact-footer">
+      <ul class="contact_column">
+        <li class="footerHeader"> {{ block.settings.contact_heading }} </li>
+        <li class="contact_content">
+            <label class="footerPara">{{ block.settings.label_1 }} : </label>
+      		<span class="footerPara ContactPara">{{ block.settings.value_1 }}</span>
+        </li>
+        <li class="contact_content">
+            <label class="footerPara">{{ block.settings.label_2 }} : </label>
+      		<span class="footerPara ContactPara">{{ block.settings.value_2 }}</span>
+        </li>
+        <li class="contact_content">
+            <label class="footerPara">{{ block.settings.label_3 }} : </label>
+          	<a href="{{	block.settings.mail_to }}"><span class="footerPara ContactPara mailinfo">{{ block.settings.value_3 }}</span></a>
+        </li>
+        <li class="contact_content">
+            <label class="footerPara">{{ block.settings.label_4 }} : </label>
+      		<span class="footerPara ContactPara">{{ block.settings.value_4 }}</span>
+        </li>
+      </ul>
+    </div>
+  {% endcase %}
+  {% endfor %}
+</div>
+    
+
+{% schema %}
+{
+	"name" : "Standard Footer",
+	"settings" : [	
+		{	
+			"type": "color",
+			"id": "footer_background",
+			"label": "Footer Background"
+		},
+		{	
+			"type": "color",
+			"id": "footer_font_color",
+			"label": "Footer Font Color"
+		}
+	],
+	"blocks": [
+		{
+			"type": "image",
+			"name": "Logo",
+			"settings": [
+				{
+                  "type": "image_picker",
+                  "id": "footer_logo",
+                  "label": "Logo Image"
+				},
+				{
+                  "type": "text",
+                  "id": "copyright_text",
+                  "label": "Copyright Text"
+				},
+				{
+                  "type": "url",
+                  "id": "logo_link",
+                  "label": "Logo Link"
+				}
+			]
+		},
+		{
+			"type": "url",
+			"name": "Links",
+			"settings": [
+				{
+                  "type": "url",
+                  "id": "facebook_link",
+                  "label": "Facebook Link"
+				},
+				{
+                  "type": "url",
+                  "id": "twitter_link",
+                  "label": "Twitter Link"
+				},
+				{
+                  "type": "url",
+                  "id": "youtube_link",
+                  "label": "Youtube Link"
+				},
+				{
+                  "type": "url",
+                  "id": "instagram_link",
+                  "label": "Instagram Link"
+				},
+  				{
+                  "type": "image_picker",
+                  "id": "mastercard_img",
+                  "label": "Payment Option 1"
+				},
+  				{
+                  "type": "image_picker",
+                  "id": "visa_img",
+                  "label": "Payment Option 2"
+				}
+			]
+		},
+		{	
+			"type": "text",
+			"name": "Columns",
+			"settings": [
+				{
+                  "type": "text",
+                  "id": "column_heading",
+                  "label": "Heading"
+				},
+				{
+                  "type": "text",
+                  "id": "sub_heading1",
+                  "label": "Sub-Heading 1"
+				},
+				{
+                  "type": "url",
+                  "id": "subheading1_link",
+                  "label": "Sub-Heading1 Link"
+				},
+				{
+                  "type": "text",
+                  "id": "sub_heading2",
+                  "label": "Sub-Heading 2"
+				},
+				{
+                  "type": "url",
+                  "id": "subheading2_link",
+                  "label": "Sub-Heading2 Link"
+				},
+				{
+                  "type": "text",
+                  "id": "sub_heading3",
+                  "label": "Sub-Heading 3"
+				},
+				{
+                  "type": "url",
+                  "id": "subheading3_link",
+                  "label": "Sub-Heading3 Link"
+				},
+				{
+                  "type": "text",
+                  "id": "sub_heading4",
+                  "label": "Sub-Heading 4"
+				},
+				{
+                  "type": "url",
+                  "id": "subheading4_link",
+                  "label": "Sub-Heading4 Link"
+				},
+				{
+                  "type": "text",
+                  "id": "sub_heading5",
+                  "label": "Sub-Heading 5"
+				},
+				{
+                  "type": "url",
+                  "id": "subheading5_link",
+                  "label": "Sub-Heading5 Link"
+				}
+			]
+		},
+		{	
+			"type": "richtext",
+			"name": "Contact",
+			"settings": [
+				{
+                  "type": "text",
+                  "id": "contact_heading",
+                  "label": "Heading"
+				},
+				{
+                  "type": "text",
+                  "id": "label_1",
+                  "label": "Label 1"
+				},
+				{
+                  "type": "text",
+                  "id": "value_1",
+                  "label": "Value 1"
+				},
+				{
+                  "type": "text",
+                  "id": "label_2",
+                  "label": "Label 2"
+				},
+				{
+                  "type": "text",
+                  "id": "value_2",
+                  "label": "Value 2"
+				},
+				{
+                  "type": "text",
+                  "id": "label_3",
+                  "label": "Label 3"
+				},
+				{
+                  "type": "text",
+                  "id": "value_3",
+                  "label": "Value 3"
+				},
+				{
+                  "type": "url",
+                  "id": "mail_to",
+                  "label": "Mailing ID"
+				},
+				{
+                  "type": "text",
+                  "id": "label_4",
+                  "label": "Label 4"
+				},
+				{
+                  "type": "text",
+                  "id": "value_4",
+                  "label": "Value 4"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "Standard Footer",
+			"category": "text",
+			"blocks": [
+              {
+                "type": "text"
+              },
+              {
+                "type": "image"
+              }
+            ]
+		}
+	]
+}
+{% endschema %}

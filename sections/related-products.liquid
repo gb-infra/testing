@@ -1,0 +1,363 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.4/dist/css/uikit.min.css" />
+<style>
+  
+    .uk-position-center-left-out.left_c_arrow {
+    position: absolute !important;
+    top: 35%;
+    left: 5px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    background-color: white;
+    z-index: 999 !important;
+    font-weight: 900;
+    color: black;
+    box-shadow: 1px 1px 5px black;
+    visibility: initial !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     
+  }
+  .uk-position-center-left-out.left_c_arrow img {
+    max-width: 12px;
+  }
+    .uk-position-center-right-out.right_c_arrow {
+    position: absolute !important;
+    top: 35%;
+    right: 5px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    background-color: white;
+    z-index: 999 !important;
+    font-weight: 900;
+    color: black;
+    box-shadow: 1px 1px 5px black;
+    visibility: initial !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: auto;
+  }
+  .uk-position-center-right-out.right_c_arrow img {
+    max-width: 12px;
+  }
+  .viewAllAnchorTag{
+    text-decoration: underline !important;
+    color: #6D7278;
+  }
+  
+  .outer-card{
+  width: 322px;
+  }  
+  .outer-car{
+  width: 90%;
+  margin: auto;
+  margin-bottom: 20px;
+  }
+  .jdgm-widget{
+  display: block !important;
+  }
+  .jdgm-preview-badge[data-template="index"]{
+  display: block !important;
+  }
+  .jdgm-prev-badge[data-average-rating='0.00']{
+  display: block !important;
+  }
+  .jdgm-prev-badge__text{
+  padding-left: 4px;
+  font-size: 12px;
+  color: #6D7278 !important;
+  }
+  .prod-title{
+  color: black !important;
+  font-size: 16px;
+  font-family: 'Poppins' !important;
+  font-weight: 500;
+  }
+  .prod-type{
+  font-size: 12px !important;
+  font-family: 'Poppins' !important;
+  margin: 19px 0 8px 0;
+  }
+  .prod-price{
+  color: #ED4335;
+  font-family: 'Poppins' !important;
+  font-size: 16px;
+  font-weight: 600;
+   margin-top: 5px;
+   margin-bottom: 15px;
+  }
+  .jdgm-widget *{
+  font-size: 10px;
+  }
+  .rup-sym{
+  font-family: sans-serif !important; 
+  }
+  .atc1{
+  width: 154.5px;
+  height: 40.5px;
+  border: 2px solid black;
+  font-size: 12px !important;
+  font-family: 'Poppins' !important;
+  font-weight: 600;
+  text-transform: capitalize;
+  }
+  .cross-sell-popup-product .cross-sell-popup-product__image-wrapper img{
+  display: none !important;
+  }
+  @media (max-width: 885px){
+    .uk-position-center-left-out.left_c_arrow, .uk-position-center-right-out.right_c_arrow {
+      display: none !important;
+    }
+  .outer-car{
+  width: 100%;
+  }
+  }
+  @media (max-width: 700px){
+  .outer-car{
+  width: 100%;
+  }
+  .uk-grid{
+  margin-left: 0px !important;
+  }
+  .slider-item{
+  padding-left: 14px !important;
+  }
+  .slider-item:nth-child(1){
+  padding-left: 0px !important;
+  }
+  .outer-card {
+    width: 274px;
+}
+   
+  }
+  .product-grid-item{
+  max-width: 322px;
+  }
+  @media (min-width: 900px){
+    .uk-grid>*{
+    
+    padding-left: 26px !important;
+    
+    }
+  }
+   @media (max-width: 700px){
+   .product-grid-item{
+  max-width: 274px;
+  }
+  }
+  .car-head-cont{
+  position: relative;
+  width: max-content;
+  margin: auto;
+  }
+ 
+  .dummy-left{
+  position: absolute;
+    font-weight: 600;
+  font-size: 24px;
+  left: -40px;
+  top: -6.5px;
+  cursor: pointer;
+  }
+  
+  .dummy-right{
+  position: absolute;
+    font-weight: 600;
+  font-size: 24px;
+  right: -40px;
+  top: -6.5px;
+  cursor: pointer;
+  }
+  .view-all{
+  width: max-content;
+  margin: 0 auto;
+  margin-bottom: 20px;
+   font-size: 12px !important;
+   font-family: "Poppins";
+  font-weight:  400;
+  color: #6D7278;
+  }
+  
+  @media (max-width: 768px){
+  .uk-slider-items a.product-grid-item__product-name {
+    height: auto !important;
+}
+     .car-head{
+  font-size: 16px !important;
+   font-family: "Poppins";
+  font-weight: 600;
+  color : #232323;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  }
+    .dummy-left{
+  display:none;
+  }
+  
+  .dummy-right{
+    display:none;
+  }
+    
+  }
+  
+   @media (min-width: 769px){
+      .car-head{
+  font-size: 24px !important;
+   font-family: "Poppins";
+  font-weight: 600;
+  color : #232323;
+  margin-bottom: 15px;
+  }
+     .dummy-left{
+  position: absolute;
+    font-weight: 600;
+  font-size: 24px;
+  left: -40px;
+  top: -6.5px;
+  cursor: pointer;
+  }
+  
+     .dummy-right{
+       position: absolute;
+       font-weight: 600;
+       font-size: 24px;
+       right: -40px;
+       top: -6.5px;
+       cursor: pointer;
+     }
+     .car-back{
+        background: none !important;
+/*         padding-top: 45px; */
+        padding-bottom: 0px;
+     }
+
+   }
+</style>
+<!-- <div style="margin: 50px"></div> -->
+<div class="car-head-cont">
+  <p class="car-head">{{section.settings.sectionHead}}</p>
+  <div class="dummy-left">&#60;</div>
+  <div class="dummy-right">&#62;</div>
+  <a class="viewAllAnchorTag" href="{{section.settings.view}}"><p class="view-all">View All</p></a>
+</div>
+<div class="outer-car">
+<div class="uk-position-relative uk-visible-toggle uk-light items-cont gg-cover" tabindex="-1" uk-slider="finite: true;">
+
+<ul class="uk-slider-items uk-grid">
+  {% assign col = section.settings.collectionHandle %}
+  {% for product in collections[col].products %}
+               <li class="slider-item">
+                     {%comment%}<div class="outer-card">
+                     <div class="card">   
+                       
+                      <img class ="card_img" src ="{{ product | img_url: '600x'}}" />
+                      <p class="prod-type">{{product.type}}</p>
+                      <a class="prod-title" href="{{product.url}}">{{ product.title }}</a>
+                       {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', concierge_install: true, product: product %}
+                       <div class="prod-price"><span class="rup-sym">₹&nbsp</span>{{product.price | divided_by: 100 }}</div>
+
+                       <div class="form-container">
+                       <form class="custom-but_test" action="/cart/add" method="post" id="product-form-{{product.id}}">   
+        	     <input type="hidden" name="id" value="{{product.variants[0].id}}">        
+          	      <button class="atc1" type=" submit " name="add" class="action_button btn btn--add-to-cart btn--secondary-accent icon-cart">Add to Cart</button>                  
+      		      <input type="hidden" name="discount" value=" "></form>
+                 </div>
+
+                    </div>
+<!--                    <div >ADD TO CART</div> -->
+                    
+              </div>{%endcomment%}
+                 {%include 'product-grid-item-new'%}
+             </li>
+                {% endfor %}
+     </ul>
+  
+<!--         <a class="uk-position-center-left-out main-left" href="#" uk-slider-item="previous">...</a>
+        <a class="uk-position-center-right-out main-right" href="#" uk-slider-item="next">...</a> -->
+  <a class="uk-position-center-left-out main-left left_c_arrow" href="#" uk-slider-item="previous"><img src="https://cdn.shopify.com/s/files/1/0007/2659/7747/files/right-arrow_2.png?v=1632909988" alt=""></a>
+        <a class="uk-position-center-right-out main-right right_c_arrow" href="#" uk-slider-item="next"><img src="https://cdn.shopify.com/s/files/1/0007/2659/7747/files/right-arrow_2_1.png?v=1632910057" alt=""></a>
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.7.4/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.7.4/dist/js/uikit-icons.min.js"></script>
+
+
+
+{% schema %}
+{
+  "name": "Bestseller of season",
+  "class": "homepage-section--image-gallery-wrapper wow fadeIn",
+  "max_blocks": 6,
+  "settings": [
+          {
+            "type": "checkbox",
+            "id": "show_slider_section",
+            "label": "Show Slider section",
+            "default": true
+          },
+          {
+            "type" : "text",
+             "id" : "sectionHead",
+              "label" : "Slider Heading"
+          
+          },
+          {
+            "type" : "url",
+             "id" : "view",
+              "label" : "View All Link"
+          },
+          {
+            "type" : "collection",
+             "id" : "collectionHandle",
+              "label" : "Collection Handle"
+          }
+          
+    ],
+      "blocks": [
+      {
+          "type": "select",
+          "name": "select",
+          "settings": [
+              {
+               "type": "product",
+              "id": "product",
+              "label": "Product"
+              },
+              {
+                "type": "text",
+                "id": "description1",
+                "label": "Description",
+                "info": "Text"
+              },
+              {
+                "type": "text",
+                "id": "description2",
+                "label": "Description",
+                "info": "Text"
+              },
+              {
+                "type": "text",
+                "id": "description3",
+                "label": "For Flavor",
+                "info": "Text"
+              }
+          ]
+        
+      }
+	],
+          "presets": [
+		{
+			"name": "Collection-Slider-Homepage",
+			"category": "Collections"
+		}
+       ]
+    }
+{% endschema %}

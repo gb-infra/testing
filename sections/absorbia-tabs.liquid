@@ -1,0 +1,233 @@
+<style>
+  .tabs-container{
+    text-align: center;
+    padding: 40px 0;  
+    position: relative;
+  }
+  .tab-heading{
+    font-family: 'Advent Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 120%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #464856;
+  }
+  .tab {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 48px;
+    color: #DEDEDE;
+  }
+
+  /* Style the buttons that are used to open the tab content */
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 48px;
+    color: #DEDEDE;
+    border-bottom: 4px solid transparent;
+  }
+
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    color: #000000;
+  }
+
+  /* Create an active/current tablink class */
+  .tab .tablinks.active {
+    color: #000000;
+    border-bottom: 4px solid #11897A;
+    border-radius: 0;
+  }
+
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 28px 24px;
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    border: 2px solid #000000;
+    border-radius: 20px;
+    margin-top: 44.5px;
+  }
+  .mob{
+    display: none;
+  }
+  .tabcontent .desk{
+    display: block;
+    margin: auto;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    padding: 20px;
+  }
+  @media (min-width: 769px){
+    .tab .tablinks.active #triangle-up{
+      display: block;
+      width: 0;
+      height: 0;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 30px solid #000000;
+      position: absolute;
+      left: 24%;
+      top: 29.4%;
+    }
+    #triangle-up {
+      display: none;
+    }
+    .tab .link2.active  #triangle-up{
+      left: 38%;
+    }
+    .tab .link3.active #triangle-up{
+      left: 55%;
+    }
+    .tab .link4.active #triangle-up{
+      left: 71%;
+    }
+  }
+  @media (max-width: 769px){
+     .tab-heading{
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 120%;
+    }
+    .tab button {
+      cursor: pointer;
+      padding: 4px 8px;
+      font-size: 14px;
+  	}
+    .mob{
+      display: block;
+    }
+    .desk-img{
+      display: none;
+    }
+  }
+</style>
+
+<div class="container tabs-container">
+  <h1 class="tab-heading">{{ section.settings.tabs-heading }}</h1>
+  <div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'classic')" id="defaultOpen">Classic<div id="triangle-up"></div></button>
+    <button class="tablinks link2" onclick="openCity(event, 'reusable')">Resuable<div id="triangle-up"></div></button>
+    <button class="tablinks link3" onclick="openCity(event, 'closet-pouch')">Closet Pouch<div id="triangle-up"></div></button>
+    <button class="tablinks link4" onclick="openCity(event, 'sachet')">Sachet<div id="triangle-up"></div></button>
+  </div>
+
+  <!-- Tab content -->
+  <div id="classic" class="tabcontent">
+    <img class="desk-img" src="https://cdn.shopify.com/s/files/1/0633/3730/0223/t/2/assets/Group_20293_1.png?v=1647926352">
+  	<img class="mob" src="https://cdn.shopify.com/s/files/1/0633/3730/0223/t/2/assets/Group_20294.jpg?v=1647870231">
+  </div>
+
+  <div id="reusable" class="tabcontent">
+  	<img class="desk-img" src="https://cdn.shopify.com/s/files/1/0633/3730/0223/t/2/assets/Group_20293_1.png?v=1647926352"> 
+    <img class="mob" src="https://cdn.shopify.com/s/files/1/0633/3730/0223/t/2/assets/Group_20294.jpg?v=1647870231">
+  </div>
+
+  <div id="closet-pouch" class="tabcontent">
+	  <img class="desk-img" src="https://cdn.shopify.com/s/files/1/0633/3730/0223/t/2/assets/Group_20293_1.png?v=1647926352">
+      <img class="mob" src="https://cdn.shopify.com/s/files/1/0633/3730/0223/t/2/assets/Group_20294.jpg?v=1647870231">
+  </div>
+  
+  <div id="sachet" class="tabcontent">
+	  <img class="desk-img" src="https://cdn.shopify.com/s/files/1/0633/3730/0223/t/2/assets/Group_20293_1.png?v=1647926352">
+      <img class="mob" src="https://cdn.shopify.com/s/files/1/0633/3730/0223/t/2/assets/Group_20294.jpg?v=1647870231">
+  </div>
+</div>
+
+<script>
+  document.getElementById("defaultOpen").click();
+
+  function openCity(evt, product) {
+        // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(product).style.display = "block";
+    evt.currentTarget.className += " active";
+    
+    
+  }
+</script>
+
+<script>
+  var pageURL = window.location.pathname;
+  var lastURLSegment = pageURL.substr(pageURL.lastIndexOf('/') + 1);
+console.log(lastURLSegment);
+  
+  
+const url = window.location.href;
+url.split("/").pop(); 
+const secondlastSegment = url.split("/").pop();
+console.log(secondlastSegment); // "playlist"
+  
+  
+  
+  if(lastURLSegment == 'all-products')
+       $(".category-tabs").css("background-color", "#11897A");
+  else if(lastURLSegment == 'kitchen')
+       $(".category-tabs").css("display", "none");
+  else if(lastURLSegment == 'pre-and-post-pregnancy-care')
+       $(".pre").css("display", "block");
+  else if(lastURLSegment == 'wellness-and-nutrition')
+       $(".Wellness").css("display", "block");
+  else if(lastURLSegment == 'healthy-skin-and-hair')
+       $(".Healthy").css("display", "block");
+  else if(lastURLSegment == 'all')
+       $(".all").css("display", "block");
+  else if(lastURLSegment == 'skincare-serums')
+       $(".skincare-serums").css("display", "block");
+  
+
+</script>
+
+{% schema %}
+  {
+    "name": "Absorbia Tabs",
+    "settings": [
+        {
+          "type": "text",
+          "id": "tabs-heading",
+          "label": "Heading"
+		}
+	],
+	"presets": [
+		{
+			"name": "Absorbia Tabs",
+			"category": "image_picker"
+		}
+	]
+  }
+{% endschema %}

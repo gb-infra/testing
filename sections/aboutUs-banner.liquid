@@ -1,0 +1,121 @@
+<style>
+  .banner-container{
+    background-image: url("{{section.settings.banner-background | img_url: 'master' }}");
+    min-height: 530px;
+    position: relative;
+  }
+  .banner-elements{
+    position: absolute;
+    top: 24%;
+    left: 4%
+  }
+  .comma{
+    position: absolute;
+  }
+  .vector{
+    margin-top: -28px;
+  }
+  .banner-heading,.banner-subheading{
+    font-family: 'Advent Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 76px;
+    text-transform: uppercase;
+    color: #2B2424;
+    padding-left: 28px;
+  }
+  .banner-description{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #2F2F2F;
+    width: 56%;
+    padding: 16px 0 0 28px;
+  }
+  @media (max-width: 769px){
+    .banner-elements {
+      top: 50%;
+  	}
+    .comma{
+      position: relative;
+    }
+    .banner-heading, .banner-subheading {
+      font-family: 'Advent Pro';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 38px;
+      text-transform: uppercase;
+      color: #2B2424;
+      padding: 0;
+    }
+    .banner-description {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+      color: #2F2F2F;
+      width: 90%;
+      font-size: 14px;
+      padding: 0;
+	}
+    .banner-container{
+      background-image: url("{{section.settings.banner-background-mobile | img_url: 'master' }}");
+      min-height: 530px;
+      position: relative;
+    }
+  }
+</style>
+
+<div class="banner-container">
+  <div class="banner-elements">
+    <img class="comma" src="https://cdn.shopify.com/s/files/1/0633/3730/0223/t/2/assets/comma.png?v=1647710342"><h1 class="banner-heading">{{section.settings.banner-heading}}</h1>
+    <p class="banner-subheading">{{ section.settings.banner-subheading }}
+      <img class="vector" src="https://cdn.shopify.com/s/files/1/0633/3730/0223/t/2/assets/like_2.png?v=1647712618">
+    </p>
+    <p class="banner-description">{{section.settings.banner-description}}</p>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "About Us Banner",
+    "settings": [
+		{
+			"type": "image_picker",
+			"id": "banner-background",
+			"label": "Background Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "banner-background-mobile",
+			"label": "Background Image (Mobile)"
+		},
+		{
+			"type": "text",
+			"id": "banner-heading",
+			"label": "Heading"
+		},
+		{
+			"type": "text",
+			"id": "banner-subheading",
+			"label": "Sub Heading"
+		},
+		{
+			"type": "text",
+			"id": "banner-description",
+			"label": "Description"
+		}
+	],
+	"presets": [
+		{
+			"name": "About Us Banner",
+			"category": "text"
+		}
+	]
+  }
+{% endschema %}

@@ -1,0 +1,70 @@
+<style>
+  	.desktop{
+      display: block;
+      padding-top:0px !important;
+    }
+     
+    .mobile{
+      display: none;        
+    }    
+  @media (max-width: 768px){
+     .desktop{
+        display: none;
+      }
+     .mobile{
+    	display: block;
+        padding-top:0px !important;
+  	 }
+}  
+</style>
+
+<div>
+  
+  {% if scetion.settings.banner_desktop != blank %}
+	<div class="desktop" >
+  		<a href="{{ section.settings.banner_link }}">
+       		<img src="{{section.settings.banner_desktop |  img_url: 'master'}}" alt="" style="width: 100%">
+		</a>
+	</div>
+  {% endif %}
+  
+  {% if section.settings.banner_mobile != blank %}
+	<a href="{{ section.settings.banner_link }}">
+      <div class="mobile" >
+           <img src="{{section.settings.banner_mobile |  img_url: 'master'}}" alt="">
+      </div> 
+	</a>
+  {% endif %}
+</div>
+
+{% schema %}
+  {
+    "name": "Responsive Banner",
+    "settings": [
+				
+			{
+                "type": "image_picker",
+                "id": "banner_desktop",
+                "label": "Banner Desktop"
+            },
+			{
+                "type": "image_picker",
+                "id": "banner_mobile",
+                "label": "Banner Mobile"
+            },
+			{
+                  "type": "url",
+                  "id": "banner_link",
+                  "label": "Image Link",
+                  "info": "Optional"
+            }
+	],
+	"presets": [
+		{
+			"name": "Responsive Banner",
+			"category": "Banner"
+		}
+	]
+  }
+{% endschema %}
+

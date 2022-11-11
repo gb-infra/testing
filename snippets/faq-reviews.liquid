@@ -1,0 +1,128 @@
+<style>
+.accordion {
+	background-color: transparent;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    transition: 0.4s;
+    letter-spacing: 0.48px;
+    padding: 25px 0 !important;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 30px;
+    text-transform: uppercase;
+    color: #232323;
+}
+.accordion:before{
+  content: "";
+  width: 1.4em;
+  height: 1.4em;
+  margin-left: 10px;
+  float: right;
+  background-image: url(data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%2213%22%20height%3D%221%22%20x%3D%220%22%20y%3D%226%22%20%2F%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%221%22%20height%3D%2213%22%20x%3D%226%22%20y%3D%220%22%20%2F%3E%0A%3C%2Fsvg%3E);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+.active:before{
+  background-image: url(data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%2213%22%20height%3D%221%22%20x%3D%220%22%20y%3D%226%22%20%2F%3E%0A%3C%2Fsvg%3E);
+}
+.panel {
+	background-color: transparent;
+    overflow: hidden;
+    letter-spacing: 0.48px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 30px;
+    text-transform: capitalize;
+    color: #6D7278;
+  	display: none;
+}
+  .review-heading{
+    font-size: 24px !important;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    line-height: 48px;
+    display: flex;
+    align-items: center;
+    color: #464856;
+  }
+</style>
+
+ {% assign faq_question = product.metafields.my_fields.faq_questions | split : "<!--split--!>" %}
+   {% assign faq_answers = product.metafields.my_fields.faq_answers | split : "<!--split--!>" %}
+  {% if faq_question[0] != blank %}
+  <div class="faq-reviews">
+      <span class="review-heading">FAQ</span>
+      <hr class="question-break" size="1px" color="#E3E3E3">
+
+      <button class="accordion">{{ faq_question[0] }}</button>
+      <div class="panel">
+        <p>{{ faq_answers[0] }}</p>
+      </div>
+      <hr class="question-break" size="1px" color="#E3E3E3">
+
+    {% if faq_question[1] != blank %}
+      <button class="accordion">{{ faq_question[1] }}</button>
+      <div class="panel">
+        <p>{{ faq_answers[1] }}</p>
+      </div>
+      <hr class="question-break" size="1px" color="#E3E3E3">
+	{% endif %}
+    
+    {% if faq_question[2] != blank %}
+      <button class="accordion">{{ faq_question[2] }}</button>
+      <div class="panel">
+        <p>{{ faq_answers[2] }}</p>
+      </div>
+      <hr class="question-break" size="1px" color="#E3E3E3">
+	{% endif %}
+    
+    {% if faq_question[3] != blank %}
+      <button class="accordion">{{ faq_question[3] }}</button>
+      <div class="panel">
+        <p>{{ faq_answers[3] }}</p>
+      </div>
+      <hr class="question-break" size="1px" color="#E3E3E3">
+    {% endif %}
+    
+	{% if faq_question[4] != blank %}
+      <button class="accordion">{{ faq_question[4] }}</button>
+      <div class="panel">
+        <p>{{ faq_answers[4] }}</p>
+      </div>
+      <hr class="question-break" size="1px" color="#E3E3E3">
+    {% endif %}
+
+    {% if faq_question[5] != blank %}
+      <button class="accordion">{{ faq_question[5] }}</button>
+      <div class="panel">
+        <p>{{ faq_answers[5] }}</p>
+      </div>
+      <hr class="question-break" size="1px" color="#E3E3E3">
+    {% endif %}
+  </div>
+{% endif %}
+  
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>

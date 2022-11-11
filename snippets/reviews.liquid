@@ -1,0 +1,45 @@
+<style>
+  .reviews-section{
+    display: flex;
+    justify-content: space-between;
+    margin: 60px 10vw !important;
+  }
+  .jdgm-rev-widg{
+    margin-top: 0 !important;
+    padding-top: 5px !important;
+  }
+  .faq-side{
+    width: 45%;
+  }
+  #judgeme_product_reviews {
+    width: 45% !important;
+    float: right;
+  }
+  @media (max-width: 748px){
+    .reviews-section{
+      display: block;
+      margin: 20px 0 !important;
+    }
+    .faq-side{
+      width: 100%;
+    }
+    #judgeme_product_reviews {
+      width: 100% !important;
+      margin-top: 10px;
+      padding-top: 10px;
+    }
+    .jdgm-rev-widg__title {
+      font-size: 24px !important;
+      font-weight: 600 !important;
+      font-family: 'Poppins'!important;
+  	}
+  }
+
+</style>
+
+<div class="reviews-section">
+    <div class="faq-side">
+       {% include 'faq-reviews' %}
+    </div>
+   {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: false, product: product %}
+</div>

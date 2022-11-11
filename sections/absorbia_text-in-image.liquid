@@ -1,0 +1,176 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Advent+Pro&family=Poppins:wght@100&display=swap" rel="stylesheet">
+
+<style>
+  .overall-container{
+    background-image: url(https://cdn.shopify.com/s/files/1/0633/3730/0223/t/2/assets/Group_20122_3.png?v=1648040819);
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    min-height: 616px;
+  }
+  .column-container{
+    display: grid;
+    max-width: 80%;
+    grid-template-columns: auto auto auto;
+    margin-top: 5%;
+  }
+  .columns{
+    padding: 28px;
+    min-width: 33.33%;
+  }
+  .columns:nth-child(3){
+    border: none;
+  }
+  .icons{
+    min-height: 80px;
+  }
+  .column-header{
+    font-family: 'Advent Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    color: #FFFFFF;
+    margin-top: 16px;
+  }
+  .column-description + p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+  }
+  .indo-pak-border{
+    width: 32px;
+    height: 4px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    text-align: left;
+    margin-left: 0;
+  }
+  .icons-mobile{
+    display: none;
+  }
+  .section-border{
+    display: none;
+  }
+  @media (min-width: 769px){
+    .columns{
+      border-right: 2px solid #3ACAB8;
+      max-height: 370px;
+    }
+  }
+  @media(max-width: 769px){
+    .overall-container{
+      background-image: url(https://cdn.shopify.com/s/files/1/0633/3730/0223/t/2/assets/Group_20122_2.png?v=1647839624);
+      min-height: 789px !important;
+    }
+    .column-container{
+      display: block;
+      width: 72%;
+      margin-top: 8%;
+      max-width: 72%;
+    }
+    .column-header{
+      font-size: 16px;
+      margin-top: 8px;
+      line-height: 22px;
+      letter-spacing: 0.05em;
+      font-weight: 900;
+    }
+    .column-description{
+      margin: 0;
+    }
+    .column-description + p {
+      font-size: 14px;
+      line-height: 22px;
+      letter-spacing: 0.02em;
+    }
+    .columns{
+      margin: 0;
+      margin-top: 12px;
+      padding: 0;
+    }
+    .icons{
+      display: none;
+    }
+    .icons-mobile{
+      display: block;
+    }
+    .indo-pak-border{
+      height: 0;
+      margin: 2px 0;
+    }
+    .columns:nth-child(3) .section-border{
+      border: none;
+    }
+  }
+</style>
+
+<div class="overall-container">
+  <div class="column-container">
+    {% for block in section.blocks %}
+      <div class="columns">
+        <div class="icons"><img src="{{ block.settings.icon_image | img_url }}" alt="icon" /></div>
+        <div class="icons-mobile"><img src="{{ block.settings.icon_image_mobile | img_url }}" alt="icon" /></div>
+        <h2 class="column-header">{{ block.settings.header }}</h2>
+        <hr class="indo-pak-border">
+        <p class="column-description">{{ block.settings.description }}</p>
+        <hr class="section-border">
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Text In Image",
+	"max_blocks": 3,
+    "settings": [
+		{
+			"type": "text",
+			"id": "section_heading",
+			"label": "heading"
+		}
+	],
+	"blocks": [
+		{
+			"name": "Add Column",
+			"type": "image",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "icon_image",
+					"label": "Icon"
+				},
+				{
+					"type": "image_picker",
+					"id": "icon_image_mobile",
+					"label": "Icon Mobile"
+				},
+				{
+					"type": "text",
+					"id": "header",
+					"label": "Header"
+				},
+				{
+					"type": "richtext",
+					"id": "description",
+					"label": "Description"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "Text In Image",
+			"category": "Text"
+		}
+	]
+  }
+{% endschema %}

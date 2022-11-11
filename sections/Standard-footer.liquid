@@ -1,0 +1,619 @@
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<div class="footerDiv">
+  
+  <div class="about">
+    <span class="footerheader">{{section.settings.about}}</span>
+    <span><img src="//cdn.shopify.com/s/files/1/0598/8112/8130/files/better-logo.png?v=1631280455" style="width: 100px;padding-bottom: 10px;" /></span>
+    <p class="footerPara">{{section.settings.aboutPara}}</p>
+    
+    <div class="desk" style="height: 20px;"></div>
+    <div class="abt_icons">
+      <a href="{{section.settings.fbLink}}"><i class="fab fa-facebook-square icons"></i></a>
+      <a href="{{section.settings.ttLink}}"><i class="fab fa-twitter icons "></i></a>
+      <a href="{{section.settings.ytLink}}"><i class="fab fa-youtube icons"></i></a>
+      <a href="{{section.settings.igLink}}"><i class="fab fa-instagram icons"></i></a>
+    <div class="paymentOption">
+          <img src="{{section.settings.masterCard_image |  img_url: 'master'}}" alt="" class="paymentImg" />
+
+
+          <img src="{{section.settings.visa_image |  img_url: 'master'}}" alt="" class="paymentImg" />
+    </div>
+    </div>  
+  </div>
+  
+  <div class="shop">
+    <p class="footerheader">{{section.settings.shop}}</p>
+    <p class="footerPara footerParaMobile"><a href="{{section.settings.shop1Link}}">{{section.settings.shop1}}</a></p>
+    <p class="footerPara footerParaMobile"><a href="{{section.settings.shop2Link}}">{{section.settings.shop2}}</a></p>
+    <p class="footerPara footerParaMobile"><a href="{{section.settings.shop3Link}}">{{section.settings.shop3}}</a></p>
+    <p class="footerPara footerParaMobile"><a href="{{section.settings.shop4Link}}">{{section.settings.shop4}}</a></p>
+    <p class="footerPara footerParaMobile"><a href="{{section.settings.shop5Link}}">{{section.settings.shop5}}</a></p>
+    <p class="footerPara footerParaMobile"><a href="{{section.settings.shop6Link}}">{{section.settings.shop6}}</a></p>
+  </div>
+  
+  <div class="help">
+    <p class="footerheader">{{section.settings.help}}</p>
+    <p class="footerPara footerParaMobile"><a href="{{section.settings.help4Link}}">{{section.settings.help4}}</a></p>
+    <p class="footerPara footerParaMobile"><a href="{{section.settings.help1Link}}">{{section.settings.help1}}</a></p>
+    <p class="footerPara footerParaMobile"><a href="{{section.settings.help2Link}}">{{section.settings.help2}}</a></p>
+    <p class="footerPara footerParaMobile"><a href="{{section.settings.help3Link}}">{{section.settings.help3}}</a></p>
+    <p class="footerPara footerParaMobile"><a href="{{section.settings.help5Link}}">{{section.settings.help5}}</a></p>
+  </div>
+  
+  <div class="help Contact">
+    <p class="footerheader">{{section.settings.contact}}</p>
+    <div class="ContactDiv">
+      <label class="footerPara">{{section.settings.labelcontact1}} : </label>
+      <p class="footerPara ContactPara">{{section.settings.contact1}}</p>
+    </div>
+    <div class="ContactDiv">
+      <label class="footerPara">{{section.settings.labelcontact2}} : </label>
+      <p class="footerPara ContactPara">{{section.settings.contact2}}</p>
+    </div>
+    <div class="ContactDiv">
+      <label class="footerPara">{{section.settings.labelcontact3}} : </label>
+      <a href="mailto:hello@thebetterhome.com"><p class="footerPara ContactPara emailPara">{{section.settings.contact3}}</p></a>
+    </div>
+    <div class="addressDiv">
+      <label class="footerPara">{{section.settings.labelcontact4}} : </label>
+      <p class="footerPara ContactPara addressPara">{{section.settings.contact4}}</p>
+    </div>
+  </div>
+  
+  <div class="newsletter">
+    <p class="footerheader">{{section.settings.newsletter}}</p>
+    <p class="footerPara">{{section.settings.newsletter1}}</p>
+    <form>
+    	<input type="text" id="email" name="Email" placeholder="Enter Email"><br>  
+      	<input type="submit" value="Submit" id="SignUp">
+    </form>
+  </div>
+    
+  
+</div>
+
+{%comment%}
+<hr style="margin-top: 60px;">
+ 
+<div class="companyInfoDiv">
+  
+  <div class="logoImg">
+<!--     <img src={{ 'Visa.png' | asset_url }} class="paymentImg"  /> -->
+          <img src="{{section.settings.visa_image |  img_url: 'master'}}" alt="" class="paymentImg" />
+
+<!--     <img src={{ 'rupay.png' | asset_url }} class="paymentImg" /> -->
+              <img src="{{section.settings.rupay_image |  img_url: 'master'}}" alt="" class="paymentImg" />
+
+<!--     <img src={{ 'mastercard.png' | asset_url }} class="paymentImg" /> -->
+              <img src="{{section.settings.masterCard_image |  img_url: 'master'}}" alt="" class="paymentImg" />
+
+<!--     <img src={{ 'Gpay.png' | asset_url }} class="paymentImg" /> -->
+              <img src="{{section.settings.Gpay_image |  img_url: 'master'}}" alt="" class="paymentImg" />
+
+<!--     <img src={{ 'amex.png' | asset_url }} class="paymentImg" /> -->
+              <img src="{{section.settings.amex_image |  img_url: 'master'}}" alt="" class="paymentImg" />
+
+<!--     <img src={{ 'paytm.png' | asset_url }} class="paymentImg" /> -->
+              <img src="{{section.settings.paytm_image |  img_url: 'master'}}" alt="" class="paymentImg" />
+
+    
+    
+    
+    <div class="policy">
+      <p class="policyPara1">Privacy Policy</p>
+      <p class="policyPara2">Terms of Service</p>
+    </div>
+  </div>
+  
+  <div class="companyInfo">
+    <p class="companyInfopara">(c) 2021 Merhaki Foods Pvt Ltd.</p>
+    
+    <p class="companyInfopara">Merhaki Foods (andMe) is committed to providing delicious, high quality, nutrient dense products designed especially for women. The statements on this site have not been evaluated by the FDA. Our products are not intended to diagnose, treat, cure, or prevent any disease and the results may vary from person to person.
+    </p>
+    
+     <p class="companyInfopara">andMe (andMe), 'for your Grace', 'fall into Rhythm', 'PCOS', 'PCOD' and 'UTI' are registered trademarks of Merhaki Foods and Nutrition Private Limited.
+     </p>
+    
+  </div>
+</div>
+
+{%endcomment%}
+
+
+<style>
+    .imgDiv {
+    cursor: pointer;
+}
+  .cart span.CartCount.hidden {
+    display: block !important;
+}
+  
+  #SignUp{
+       font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    background-color: #55ACB3;
+    color: white;
+    padding: 12px 30px;
+    margin-top: 13px;
+    border: 0;
+    border-radius: 0;
+    height: 42px;
+  }
+  
+  #email{
+            padding: 12px 0 12px 10px;
+    border: 0.1px solid #6D7278;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    height: 42px;
+  }
+  
+    .footerheader{
+    font-family: Poppins !important;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px !important;
+    color: #232323;
+  }
+  
+  .footerPara{
+    font-family: Poppins !important;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 18px;
+    font-size: 12px !important;
+    margin: 10px 0 !important;
+    color: #6D7278;
+  }
+  
+  .icons{
+        color: #6D7278 !important;
+    display: inline-block !important;
+    margin: 0 3px;
+  }
+  
+  .downloadApp{
+    font-family: Poppins !important;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px !important;
+    color: #232323;
+    margin: 10px 0;
+  }
+  
+  .companyInfopara{
+        font-family: Poppins !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px !important;
+    color: #989898;
+  }
+  
+  .paymentImg{
+    width: 32px;
+    margin-right: 5px;
+  }
+  
+  .fab{
+    font-size: 20px;
+    
+  }
+  .abt_icons .fab{
+    position: relative;
+    bottom: -2px;
+  }
+  .ContactDiv {
+    overflow: hidden;
+  }
+  .Contact  label.footerPara {
+    min-width: 70px;
+    float: left;
+    margin: 0 !important;
+  }
+  .Contact  p.footerPara {
+    float: left;
+    margin: 0 0 10px !important;
+  }
+  
+  .ContactPara{
+    display: inline-block;
+  }
+  
+  .addressDiv{
+    display: flex;
+  }
+  
+  .ContactDiv{
+        margin-bottom: -9px;
+  }
+  
+  .emailPara{
+    color:#55ACB3;
+  }
+  
+  .newsletter form{
+    margin-top:25px;
+  }
+  
+  .newsletter{display:none;}
+  
+  
+  
+@media (min-width: 1242px){
+  
+  .footerDiv{
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .about{
+     width: 296px;
+  }
+  
+  .newsletter{
+        width: 219px;
+  }
+  
+  .companyInfoDiv{
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0px 30px;
+    justify-content: space-around;
+  }
+  
+  .logoImg{
+        margin-left: 10px;
+  }
+  
+  .companyInfo{
+    max-width: 912px;
+  }
+  
+  .policy{
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .policyPara1{ 
+     margin: 20px 8px 0 0 !important;
+    font-family: Poppins !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px !important;
+  }
+  
+  .policyPara2{
+     margin: 20px 0 0 8px !important;
+    font-family: Poppins !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px !important;
+  }
+  
+  .paymentOption{
+    margin-top: 20px;
+  }
+  
+  .addressPara{
+    max-width:182px;
+  }
+  
+  
+ 
+  
+}
+  
+@media (max-width: 1241px){
+  .footerDiv{
+    padding-left: 10px;
+  }
+  
+  .about,.help,.shop{
+    margin-bottom: 20px;
+  } 
+  
+  .logoImg{
+    margin-bottom: 30px;
+  }
+  
+  .companyInfoDiv{
+    padding: 0px 20px;
+  }
+  
+  .policy{
+    display: none;
+  }
+  
+  .addressPara{
+    max-width:278px;
+  }
+  
+  .newsletter .footerPara{
+    max-width: 258px;
+  }
+  
+  .footerParaMobile{
+    display: inline-block;
+    margin-right: 8px !important;
+  }
+  
+  #email{
+    width: 75%;
+  }
+  
+
+ 
+  
+}
+  @media screen and (max-width: 767px) {
+    .newsletter .footerPara {
+    max-width: 90%;
+    }
+  }
+  
+  .footerPara > a{
+  color: #6D7278 !important;
+  }
+</style>
+
+
+
+
+
+
+
+
+
+{% schema %}
+  {
+    "name": "footer-new1",
+    "settings": [
+
+				{
+                "type": "image_picker",
+                "id": "visa_image",
+                "label": "visa image"
+                },
+				{
+                "type": "image_picker",
+                "id": "rupay_image",
+                "label": "rupay image"
+                },
+				{
+                "type": "image_picker",
+                "id": "masterCard_image",
+                "label": "masterCard image"
+                },
+				{
+                "type": "image_picker",
+                "id": "Gpay_image",
+                "label": "Gpay image"
+                },
+				{
+                "type": "image_picker",
+                "id": "amex_image",
+                "label": "amex image"
+                },
+				{
+                "type": "image_picker",
+                "id": "paytm_image",
+                "label": "paytm image"
+                },
+                {
+					"type":"url",
+					"id": "fbLink",
+					"label": "Facebook Link"
+				},
+                {
+					"type":"url",
+					"id": "ttLink",
+					"label": "Twitter Link"
+				},
+                {
+					"type":"url",
+					"id": "ytLink",
+					"label": "Youtube Link"
+				},
+                 {
+					"type":"url",
+					"id": "igLink",
+					"label": "Instagram Link"
+				},
+				{
+					"type":"text",
+					"id": "about",
+					"label": "about"
+				},
+				{
+					"type":"text",
+					"id": "aboutPara",
+					"label": "about Para"
+				},
+				{
+					"type":"text",
+					"id": "shop",
+					"label": "shop"
+				},
+				{
+					"type":"text",
+					"id": "shop1",
+					"label": "shop1"
+				},
+                 {
+					"type":"url",
+					"id": "shop1Link",
+					"label": "shop1 Link"
+				},
+				{
+					"type":"text",
+					"id": "shop2",
+					"label": "shop2"
+				},
+                 {
+					"type":"url",
+					"id": "shop2Link",
+					"label": "shop2 Link"
+				},
+				{
+					"type":"text",
+					"id": "shop3",
+					"label": "shop3"
+				},
+                {
+					"type":"url",
+					"id": "shop3Link",
+					"label": "shop3 Link"
+				},
+				{
+					"type":"text",
+					"id": "shop4",
+					"label": "shop4"
+				},
+                {
+					"type":"url",
+					"id": "shop4Link",
+					"label": "shop4 Link"
+				},
+				{
+					"type":"text",
+					"id": "shop5",
+					"label": "shop5"
+				},
+                {
+					"type":"url",
+					"id": "shop5Link",
+					"label": "shop5 Link"
+				},
+				{
+					"type":"text",
+					"id": "shop6",
+					"label": "shop6"
+				},
+                {
+					"type":"url",
+					"id": "shop6Link",
+					"label": "shop6 Link"
+				},
+				{
+					"type":"text",
+					"id": "help",
+					"label": "help"
+				},
+				{
+					"type":"text",
+					"id": "help1",
+					"label": "help1"
+				},
+                {
+					"type":"url",
+					"id": "help1Link",
+					"label": "help1 Link"
+				},
+				{
+					"type":"text",
+					"id": "help2",
+					"label": "help2"
+				},
+                 {
+					"type":"url",
+					"id": "help2Link",
+					"label": "help2 Link"
+				},
+				{
+					"type":"text",
+					"id": "help3",
+					"label": "help3"
+				},
+                 {
+					"type":"url",
+					"id": "help3Link",
+					"label": "help3 Link"
+				},
+				{
+					"type":"text",
+					"id": "help4",
+					"label": "help4"
+				},
+                 {
+					"type":"url",
+					"id": "help4Link",
+					"label": "help4 Link"
+				},
+				{
+					"type":"text",
+					"id": "help5",
+					"label": "help5"
+				},
+                 {
+					"type":"url",
+					"id": "help5Link",
+					"label": "help5 Link"
+				},
+				{
+					"type":"text",
+					"id": "contact",
+					"label": "contact"
+				},
+				{
+					"type":"text",
+					"id": "contact1",
+					"label": "contact1"
+				},
+				{
+					"type":"text",
+					"id": "contact2",
+					"label": "contact2"
+				},
+				{
+					"type":"text",
+					"id": "contact3",
+					"label": "contact3"
+				},
+				{
+					"type":"text",
+					"id": "contact4",
+					"label": "contact4"
+				},
+				{
+					"type":"text",
+					"id": "labelcontact1",
+					"label": "labelcontact1"
+				},
+				{
+					"type":"text",
+					"id": "labelcontact2",
+					"label": "labelcontact2"
+				},
+				{
+					"type":"text",
+					"id": "labelcontact3",
+					"label": "labelcontact3"
+				},
+				{
+					"type":"text",
+					"id": "labelcontact4",
+					"label": "labelcontact4"
+				},
+				{
+					"type":"text",
+					"id": "newsletter",
+					"label": "newsletter"
+				},
+				{
+					"type":"text",
+					"id": "newsletter1",
+					"label": "newsletter1"
+				}
+],	"presets": [
+		{
+			"name": "footersection-new1",
+			"category": "Footer"
+		}
+	]
+  }
+{% endschema %}

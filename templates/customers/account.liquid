@@ -1,0 +1,656 @@
+              <style>
+                .cancel_button{
+                  display: none;
+                }
+                p{
+                  margin-bottom: 10px;
+                }
+                thead td{
+                  padding: 0 20px 7px 20px !important;
+                  margin: 0 0 3px 0;
+                }
+                thead{
+                  background: #EAEAEA
+                }
+                th{
+                  padding: 7px 20px !important;
+                  margin: 3px 0 0 0;
+                }
+                .o_d{
+                  display:flex;
+                  padding:20px;
+                  background: #F8F8F8;
+                }
+                .p_i{
+                  margin-right:20px;
+                }
+                .p_t{
+                  font-size:15px;
+                  font-weight:600;
+                }
+                a{
+                  font-size:14px;
+                  color:black !important;
+                  font-weight: 500; 
+                }
+                .breadcrumb {
+                    text-align: center;
+                }
+              </style>
+              <div class="wrapper header-space">
+              <div class="wrapper">
+              {% include 'breadcrumb' %}
+              {%comment%}
+                
+              <h1>{{ 'customer.account.title' | t }}</h1>
+              <hr class="hr--small">
+              <div class="grid">
+
+                <div class="grid__item two-thirds medium-down--one-whole">
+                  <h2 class="h4">{{ 'customer.orders.title' | t }}</h2>
+
+                  {% comment %}
+                    If we have past orders, loop through each one
+                  {% endcomment %}
+                  {% paginate customer.orders by 20 %}
+                    {% if customer.orders.size != 0 %}
+
+                      <div class="table-wrap">
+                        <table class="full">
+                           {% for order in customer.orders %}
+                          <thead>
+              <!--               <tr>
+                              <th>{{ 'customer.orders.order_number' | t }}</th>
+                              <th>{{ 'customer.orders.total' | t }}</th>
+                              <th>{{ 'customer.orders.date' | t }}</th>
+                              <th>{{ 'customer.orders.payment_status' | t }}</th>
+                              <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+
+                            </tr> -->
+                                          <tr>
+                              <th>Order#</th>
+                              <th>Total</th>
+                              <th>Order Placed On</th>
+                              <th>Ship To</th>
+                              <th>Status</th>
+
+                            </tr>
+                             <tr>
+                                <td>{{ order.name | link_to: order.customer_url }}</td>
+                                <td>{{ order.total_price | money }}</td>
+                                <td>{{ order.created_at | date: format: 'month_day_year' }}</td>
+                                <td>{% if customer.default_address.zip != "" %}
+                      {{ customer.default_address.zip | upcase }}<br>
+                    {% endif %}</td>
+                                <td>{{ order.fulfillment_status_label }}</td>
+
+                              </tr>
+
+                          </thead>
+                          <tbody>
+
+              <!--                 <tr>
+                                <td>{{ order.name | link_to: order.customer_url }}</td>
+                                <td>{{ order.total_price | money }}</td>
+                                <td>{{ order.created_at | date: format: 'month_day_year' }}</td>
+                                <td>{{ order.financial_status_label }}</td>
+                                <td>{{ order.fulfillment_status_label }}</td>
+
+                              </tr> -->
+
+                            <tr>
+
+                              <td colspan="5">              {%for product in order.line_items %}
+                                <div class="o_d">
+                                  <div class="p_i">
+                                    {{ product.image | img_url: '100x100' | img_tag }}
+                                  </div>
+                                  <div class="p_in">
+                                    <p class="p_t">{{product.title}}</p>
+                                    <p class="p_ty">{{product.product.type}}</p>
+                                    <p class="o_st">{{ order.fulfillment_status }}</p>
+                                  </div>
+                                </div>
+                            {%endfor%}</td>
+                            </tr>
+
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                      </div>
+
+                    {% else %}
+
+                      <p>{{ 'customer.orders.none' | t }}</p>
+
+                    {% endif %}
+                    {% if paginate.pages > 1 %}
+                      <hr>
+                      <div class="pagination">
+                        {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+                      </div>
+                    {% endif %}
+                  {% endpaginate %}
+                </div>
+
+                <div class="grid__item one-third medium-down--one-whole">
+                  <h2 class="h4">{{ 'customer.account.details' | t }}</h2>
+                  <h3 class="h5">{{ customer.name }}</h3>
+                  <p><a href="/account/logout">{{ 'customer.login.logout' | t }}</a></p>
+                  {% if customer.default_address != nil %}
+                    <p>
+                    {{ customer.default_address.address1 }}<br>
+
+                    {% if customer.default_address.address2 != "" %}
+                      {{ customer.default_address.address2 }}<br>
+                    {% endif %}
+
+                    {% if customer.default_address.city != "" %}
+                      {{ customer.default_address.city }}<br>
+                    {% endif %}
+
+                    {% if customer.default_address.province_code != "" %}
+                      {{ customer.default_address.province_code | upcase }}<br>
+                    {% endif %}
+
+                    {% if customer.default_address.zip != "" %}
+                      {{ customer.default_address.zip | upcase }}<br>
+                    {% endif %}
+
+                    {% if customer.default_address.country != "" %}
+                      {{ customer.default_address.country }}<br>
+                    {% endif %}
+
+                    {% if customer.default_address.phone != "" %}
+                      {{ customer.default_address.phone }}
+                    {% endif %}
+                    </p>
+
+                  {% endif %}
+
+                  <p><a href="/account/addresses">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a></p>
+                </div>
+
+              </div>
+              {%endcomment%}
+              <style>
+                h3{font-size: 12px; font-weight:400; color: #6D7278;}
+                .order_det_p{color:#232323; font-size:14px; font-weight:500;}
+                .order_status{
+                  text-transform:uppercase;
+                  font-size: 14px;
+                  font-weight:700;
+                  color: #11897a;
+                }
+                .ul-li {
+                    border: 1px solid #E3E3E3;
+                }
+                .ul-li li{
+                  margin: 15px 10px;
+                  padding: 10px;
+                  font-size: 14px;
+                  font-weight: 400;
+                  cursor: pointer;
+                }
+                .order_item_old_container {
+                   display: flex;
+                  justify-content: space-between;
+                }
+                .order_item_old {
+                      display: flex;
+                  justify-content: space-around;
+                  padding: 20px;
+                  border: 1px solid #E3E3E3;
+                  margin-bottom: 20px;
+                }
+                .nav_content{width:20%}
+                .left_nav {
+                  width:20%; font-size:14px; font-weight:500;
+                }
+                .right_cont{
+                  width:77%; 
+                }
+                .order-det {
+                  width: 220px;
+                }
+                .order-det h3  {
+                  color: #6D7278;
+                  font-size: 12px;
+                }
+                .order-det p, .order-det a  {
+                  color: #232323;
+                  font-size: 14px;
+                  font-weight: 400;
+                  margin: 5px 0 20px;
+
+                }
+                .order-det p:last-child {
+                  margin-bottom: 0;
+                }
+                 .ship_to h3  {
+                  color: #6D7278;
+                  font-size: 12px;
+                  margin-bottom: 5px;
+                }
+                .ship_to p  {
+                  color: #232323;
+                  font-size: 14px;
+                  font-weight: 400;
+                  padding-right: 25px;
+                  margin: 0;
+
+                }
+                .ship_to strong {
+                  font-size: 14px;
+                  font-weight: 500;
+                }
+                .active-li{
+                  background-color: #11897a;
+                  color:#fff;
+                }
+                .order_title {
+                  text-align: left;
+                  color: #232323;
+                  font-size: 24px;
+                  font-weight: 600;
+                  margin: 35px 0;
+                }
+                .order_title a {
+                  float: right;
+                  color: #11897a !important;
+                  text-decoration: underline;
+                  margin-top: 10px;
+                }
+                .order_action {
+                  width:200px;
+                }
+                .order_action input.acn_btn {
+                  width:100%;font-size:14px; color: black; background-color:white; cursor: pointer; margin:10px 0; border: 1px solid #3A3D3C;
+                }
+                .order_action input.acn_btn:hover {
+                  background-color:#3A3D3C;
+                  color:#fff;
+                }
+                .order_action .order_status{
+                  margin-top: 2px;
+                }
+                .page-width.m-top-mob {
+                  max-width: 1170px;
+                  margin: 0 auto;
+                  padding: 0 55px;
+                }
+                .page-width.m-top-mob .section-header h2.text-center {
+                      text-align: left !important;
+                      font-size: 14px;
+
+                }
+                .page-width.m-top-mob .section-header {
+                  margin-bottom: 0;
+                   }
+                .page-width.m-top-mob .text-center {
+                  text-align: left !important;
+                }
+                .page-width.m-top-mob  #update-info {
+                background: #fff !important;
+                border: 1px solid #232323 !important;
+                color: #232323 !important;
+                padding: 10px 26px;
+                font-weight: 600 !important;
+                font-size: 12px !important;
+                float: left;
+                font-size: 14px !important;
+                cursor: pointer;   
+                }
+                .page-width.m-top-mob input {
+                  cursor: default;
+                  font-size: 14px;
+                  padding: 10px 26px;
+                  max-width: 600px;
+                }
+                .breadcrumb {
+                  margin: 25px 0;
+                  position: relative;
+                  top: 15px;
+				}
+                @media screen and (max-width: 767px) {
+                  .page-width.m-top-mob {
+                    max-width: 100%;
+                    padding: 15px 30px;
+                   }
+                  .order_title a {
+                  margin-top: 0px;
+                  font-size: 10px;
+                  }
+                  .page-width.m-top-mob .text-center#update-info {
+                  text-align: center !important;
+              }
+                  .order_action {
+                  width:100%;
+                }
+                  .left_nav {
+                    width: 100%;
+                    margin-bottom: 15px;
+                  }
+                  .right_cont {
+                    width: 100%;
+                  }
+                  .order_item_old_container {
+                    flex-flow: column;
+                  }
+                  .ul-li li {
+                  margin: 5px 10px;
+                  }
+                  .order_item_old {
+                  flex-flow: column;
+                  }
+                  .order-det p, .order-det a {
+                  margin: 5px 0 15px;
+                  }
+                  .ship_to {
+                    margin:15px 0;
+                  }
+                  .order_title {
+                  font-size: 16px;
+                  margin: 15px 0;
+                  }
+                    .nav_content{width:100%}
+                }
+
+                    @media only screen and (max-width: 600px){
+                    .order_detail_box{width:100% !important;}
+                    .account_detail_box{width:100% !important;}
+                    .addresses_detail_box{width:100% !important;}
+                  }
+
+              /*   adi's css */
+              /*   .order_item {
+                   background: #F8F8F8;
+                }
+                .order_item .top_strip {
+                   background: #EAEAEA;
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 10px 0px;
+                }
+                .order_item .top_strip h5 {
+                  font-size: 14px;
+                  border-right: 1px solid #D7D7D7;
+                  width: 20%;
+                  padding: 0 20px;
+
+                }
+                .order_item .top_strip h5 small {
+                      display: block;
+                  color: #232323;
+                  font-size: 9px;
+                  font-weight: 600;
+                  margin-bottom: 10px
+
+                } */
+
+              </style>
+
+
+              <!--     <div class="order_item">
+                    <div class="top_strip">
+                      <h5>
+                         <small>Order#</small>
+                         407-4385154-6805903
+                      </h5>
+                      <h5>
+                         <small>Order#</small>
+                         407-4385154-6805903
+                      </h5>
+                      <h5>
+                         <small>Order#</small>
+                         407-4385154-6805903
+                      </h5>
+                      <h5>
+                         <small>Order#</small>
+                         407-4385154-6805903
+                      </h5>
+                      <h5>
+                         <small>Order#</small>
+                         407-4385154-6805903
+                      </h5>
+                    </div>
+                    <div class="item_list">
+                      <div class="pro_img">
+                        <img scr="https://cdn.shopify.com/s/files/1/0598/8112/8130/products/01_DishwashingLiquid_500ml_Pouch_TheBetterHome-p_1_800x.png?v=1631782152" >
+                      </div> 
+                      <div class="pro_detail">
+
+                      </div>
+                    </div>
+                  </div> -->
+
+                <h2 class="order_title">Order History <a href="https://base.thebetterhome.com/">Show historical orders</a></h2>
+                <div class="order_item_old_container">
+                  <div class="nav_content"><ul class="ul-li" style="border: 1px solid #E3E3E3">
+                    <li data-pt="account_detail_box">Account Details</li>
+                    <li data-pt="subscription_detail_box">My Subscriptions</li>
+                    <li data-pt="addresses_detail_box">My Addresses</li>
+                    <li class="active-li" data-pt="right_cont">My Orders</li>
+                    <li><a href="https://beta.thebetterhome.com/account/logout">Logout</a></li>
+                   </ul></div>
+                   <div class="account_detail_box" style="display:none; border: 1px solid #E3E3E3; width:77%; padding:20px;">
+                     <h1>Account Details</h1>
+                     <p style="font-size: 20px;
+                               font-weight: 500;
+                               margin-top: 20px;">{{customer.name}}</p>
+                     <p style="font-size:14px;"><strong>Email</strong> : {{customer.email}}</p>
+                     <p style="font-size:14px;"><strong>Orders to date</strong> : {{customer.orders_count}}</p>
+                     {%if customer.phone%}
+                     <p style="font-size:14px;">Contact Number : {{customer.phone}}</p>
+                     {%endif%}
+                  </div>
+                  
+                  <div class="subscription_detail_box" style="display:none; border: 1px solid #E3E3E3; width:77%; padding:20px;">
+                    <div id="recurpay-account-widget"></div>
+                  </div>
+                  
+                  <div class="addresses_detail_box" style="display:none; border: 1px solid #E3E3E3; width: 77%; padding:20px;">
+                    <h1 style="font-size:20px; font-weight:600; margin:20px 0px;">Registered Addresses</h1>
+                    {% if customer.default_address%}
+                    <h3 style="margin:10px; font-size:18px;">Default Address</h3>
+                    <p style="padding:10px; background:#8080801a;">
+                    {% if customer.default_address.company != '' %}
+                      {{ customer.default_address.company }}<br>
+                      {% endif %}
+                      {{ customer.default_address.street }}<br>
+                      {{ customer.default_address.city }}<br>
+                      {% if customer.default_address.province != '' %}
+                      {{ customer.default_address.province }}<br>
+                      {% endif %}
+                      {{ customer.default_address.zip | upcase }}<br>
+                      {{ customer.default_address.country }}<br>
+                      {{ customer.default_address.phone }}
+                    </p>
+
+                    <h3 style="margin:10px; font-size:18px;">All Addresses</h3>
+                    <p style="padding:0 10px;">
+                      {% for address in customer.addresses %}
+                          {% if address.company != '' %}
+                          {{ address.company }}<br>
+                          {% endif %}
+                          {{ address.street }}<br>
+                          {{ address.city }}<br>
+                          {% if address.province != '' %}
+                          {{ address.province }}<br>
+                          {% endif %}
+                          {{ address.zip | upcase }}<br>
+                          {{ address.country }}<br>
+                          {{ address.phone }}	
+                          {% endfor %}
+                    </p>
+                    {% else %}
+                    <h3 style="margin:10px; font-size:18px;">No Addresses Registered Yet</h3>
+                    {% endif %}
+                  </div>
+                  <div class="right_cont">
+                    {% for order in customer.orders %}
+                      <div class="order_item_old">  
+                        <div class="order-det">
+                          <h3>ORDER NUMBER</h3>
+                          <p class="order_det_p">{{ order.name | link_to: order.customer_url }}</p>
+                          <h3>ORDER DATE</h3>
+                          <p class="order_det_p">{{ order.created_at | date: format: 'month_day_year' }}</p>
+                          <h3>ORDER TOTAL</h3>
+                          <p class="order_det_p">{{ order.total_price | money }}</p>
+                        </div>
+                        <div class="ship_to">
+                          <h3>SHIP TO</h3>
+                          <strong>{{ customer.name }}</strong>
+                          {% if customer.default_address != nil %}
+                    <p>
+                    {{ customer.default_address.address1 }}<br>
+
+                    {% if customer.default_address.address2 != "" %}
+                      {{ customer.default_address.address2 }}<br>
+                    {% endif %}
+
+                    {% if customer.default_address.city != "" %}
+                      {{ customer.default_address.city }}<br>
+                    {% endif %}
+
+                    {% if customer.default_address.province_code != "" %}
+                      {{ customer.default_address.province_code | upcase }}<br>
+                    {% endif %}
+
+                    {% if customer.default_address.zip != "" %}
+                      {{ customer.default_address.zip | upcase }}<br>
+                    {% endif %}
+
+                    {% if customer.default_address.country != "" %}
+                      {{ customer.default_address.country }}<br>
+                    {% endif %}
+
+                    {% if customer.default_address.phone != "" %}
+                      {{ customer.default_address.phone }}
+                    {% endif %}
+                    </p>
+
+                  {% endif %}
+                        </div>
+                        <div class="order_action">
+                          <h3>ORDER STATUS</h3>
+                          <p class="test" style="display:none;">{{order.fulfillment_status}}</p>
+
+                            {% if order.cancelled != true %}
+
+                              <p class="order_status">{{ order.fulfillment_status }}</p>
+                          {%else%}
+                               <p class="order_status">CANCELLED</p>
+                          {%endif%}
+                          <input type = "button" class="acn_btn" onclick = "location.href='{{ order.customer_url }}'" formtarget="_blank" value = "See Details" style="">
+                          {%if order.fulfillment_status == 'unfulfilled' and order.cancelled != true %}
+                          <input type = "cancel_button" class="acn_btn"  onclick = "javascript:cancelorders('{{order.name}}')" value = "Cancel Order"  style="">
+                          {%endif%}
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+
+                  <div id="myModal" class="modal">
+
+                  <!-- Modal content -->
+                  <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h6 style="margin:35px 0 0; text-align:center;
+                  font-weight: bold; ">Your order has been cancelled!</h3>
+
+                  </div>
+
+                  </div>
+
+                  <div id="errmodal" class="modal">
+
+                  <!-- Modal content -->
+                  <div class="modal-content">
+                    <span class="closerr">&times;</span>
+                    <h6 style="margin:35px 0 0; ">Cancellation Error, please try again!</h3>
+
+                    </div>
+
+              </div>
+
+
+                  <script>
+                var modal = document.getElementById("myModal");
+                //var btn = document.getElementById("myBtn");
+                var errmod=  document.getElementById("errmodal");
+                var span = document.getElementsByClassName("close")[0];
+                var spanerr = document.getElementsByClassName("closerr")[0];
+
+                function cancelorders(order_name) {
+                  var myHeaders = new Headers();
+                  myHeaders.append("Content-Type", "application/json");
+
+                  var raw = JSON.stringify({
+                    "order_name": order_name,
+                    "cancel_reason": "ordered by mistake"
+                  });
+
+                  var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: 'follow',
+                    mode:'no-cors'
+                  };
+
+                  fetch("https://globalbeesapi.farziengineer.co/plugins/plugin.globalbees/order_cancel?store_id=59881128130", requestOptions)
+                    .then(response => response.text())
+                    .then(
+                    (result) => {
+                      modal.style.display = "block";
+                    })
+                    .catch(
+                    (error) => { 
+                        errmod.style.display = "block";
+                        }
+                      )     //console.log('blddfgxcfgcgcgghvghcgh', error));
+
+                }
+
+                /*function display(result) {
+                  return `<p>Order no.:${result.order_name} <br/> Reason for cancelling:${result.cancel_reason}</p>`
+                }*/
+
+
+
+
+                //btn.onclick = function() {
+                  //modal.style.display = "block";
+                  //cancelorders();
+                //}
+
+                span.onclick = function() {
+                  modal.style.display = "none";
+                }
+
+
+                spanerr.onclick = function() {
+                  errmod.style.display = "none";
+                }
+
+
+                window.onclick = function(event) {
+                  if (event.target == modal) {
+                    modal.style.display = "none";
+                  }
+                }
+
+                    $('.ul-li li').on('click', function(e){
+                let efg = $('.active-li').attr('data-pt');
+                    $(`.${efg}`).hide();
+                    $('.active-li').removeClass('active-li');
+                    $(e.target).addClass('active-li')
+                let pqr = $(e.target).attr('data-pt');
+                    $(`.${pqr}`).show();
+                })
+              </script>
+
+              </div>
+              </div>

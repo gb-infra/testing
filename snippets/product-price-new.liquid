@@ -1,0 +1,70 @@
+        <style>
+		  .product-price__prices{
+            display: flex;
+          }
+          .product-price__regular{
+          font-size: 20px !important;
+          }
+          .product-price__you-save{display:none;}
+          #ComparePrice{color:gray;}
+		
+          .prod-percent{
+            background-color: #ED4335;
+            color: white;
+            margin-left: 8px;
+            padding: 6px 12px 6px 8px;
+            letter-spacing: 1px;
+            position: relative;
+          }
+          .prod-percent:before{
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            border-bottom: 28px solid white;
+            border-left: 14px solid #ED4335;
+            width: 0;
+          }
+        </style>
+
+        {% if product.available %}
+          <div class="product-price">
+            {% if settings.show_price_label %}
+              <div class="product-price__label">
+                {{ "products.general.sale_price" | t }}
+              </div>
+            {% endif %}
+            <div class="product-price__prices">
+              <span id="ProductPrice" style="font-size: 20px !important;" class="product-price__regular money" itemprop="price" data-product-price content="{{ current_variant.price | divided_by: 100.00 }}">
+                {{ current_variant.price | money }}
+              </span>
+				
+             
+              {% if settings.show_compare_price and current_variant.compare_at_price > current_variant.price %}
+                <span id="ComparePrice" data-compare-price class="product-price__compare money{% unless current_variant.compare_at_price %} hide{% endunless %}">
+                  {{ current_variant.compare_at_price | money }}
+                </span>
+              {% endif %}
+              
+              {% if available and compare_at_price > price %}
+              {% assign perSave = current_variant.price | times: 100 | divided_by: current_variant.compare_at_price %}
+              {% assign percent_value = 100 | minus: perSave %}
+              {% if percent_value > 0 %}
+              <div class="prod-percent">
+              	<span class="product-price__you-save-value js-product-savings-percents-value" data-product-savings-percents-selector>{{ percent_value }}% OFF</span>
+			  </div>            
+			  </div>
+            {% endif %}
+            {% endif %}
+            
+            {% if settings.show_compare_price and current_variant.compare_at_price > current_variant.price %}
+              {% if settings.show_saved_amount %}
+                <div class="product-price__you-save" data-product-savings-selector>
+                  You save:
+                  <span class="product-price__you-save-value js-product-savings-money-value money" data-product-savings-value-selector>{{ current_variant.compare_at_price | minus: current_variant.price | money }}</span>
+                  {% assign perSave = current_variant.price | times: 100 | divided_by: current_variant.compare_at_price %}
+                  <span class="product-price__you-save-value js-product-savings-percents-value" data-product-savings-percents-selector>({{ 100 | minus: perSave }}%)</span>
+                </div>
+              {% endif %}
+            {% endif %}
+          </div>
+        {% endif %}

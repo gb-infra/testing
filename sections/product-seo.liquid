@@ -1,0 +1,173 @@
+<style>
+  @media (max-width: 749px){
+    .container-desktop{
+      display: none;
+    }
+    .container-mobile{
+      display: block;
+    }
+    .container-mobile {
+    padding: 0 0px !important;
+  }
+   .horizontalLine {
+    margin: 16px 0 16px 0!important;
+  }
+  }
+   @media (min-width: 749px){
+    .container-desktop{
+      display: block;
+      flex: 50%;
+      padding: 0 20px 0 20px;
+    }
+     .seo_container{
+       display: flex;
+       flex-wrap: wrap;
+       padding: 16px 0;
+     }
+    .container-mobile{
+      display: none;
+    }
+  }
+  .seo_container{
+    background: ;
+  }
+  .container-mobile{
+    padding: 0 10px;
+  }
+  .horizontalLine{
+     margin: 20px 0 40px 0!important;
+     border: 0;
+     border-top: 1px solid #e5e5e5;
+  }
+  .container-mobile .heading,.container-desktop .heading_desktop{
+    color: #232323;
+    font-size: 12px !important;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    line-height: 20px;
+    font-weight: 600;
+  }
+  .container-mobile p,.container-desktop p{
+    color: ;
+    margin: 0 0 10px 0;
+    font-size: 12px !important;
+    line-height: 20px;
+  }
+</style>
+{% assign seo_heading = product.metafields.my_fields.seo_footer_heading | split: '<!--split--!>'%}
+{% assign seo_content = product.metafields.my_fields.seo_footer_content | split: '<!--split--!>'%}
+<div class="container">
+<div class="seo_container">
+  <hr class="horizontalLine">
+  {% if seo_heading[0] != blank %}
+      <div class="container-mobile">
+        <h4 class="heading">{{ seo_heading[0] }}</h4>
+        <p class="seo_content">{{ seo_content[0] }}</p>
+      </div>
+	 
+      <div class="container-desktop">
+          <h4 class="heading_desktop">{{ seo_heading[0] }}</h4>
+          <p class="seo_content_desktop">{{ seo_content[0] }}</p>
+      </div>
+  {% endif %}
+  
+  {% if seo_heading[1] != blank %}
+  	  <div class="container-mobile">
+        <h4 class="heading">{{ seo_heading[1] }}</h4>
+        <p class="seo_content">{{ seo_content[1] }}</p>
+      </div>
+	 
+      <div class="container-desktop">
+          <h4 class="heading_desktop">{{ seo_heading[1] }}</h4>
+          <p class="seo_content_desktop">{{ seo_content[1] }}</p>
+      </div>
+  {% endif %}
+  
+  {% if seo_heading[2] != blank %}
+  	  <div class="container-mobile">
+        <h4 class="heading">{{ seo_heading[2] }}</h4>
+        <p class="seo_content">{{ seo_content[2] }}</p>
+      </div>
+	 
+      <div class="container-desktop">
+          <h4 class="heading_desktop">{{ seo_heading[2] }}</h4>
+          <p class="seo_content_desktop">{{ seo_content[2] }}</p>
+      </div>
+  {% endif %}
+  
+  {% if seo_heading[3] != blank %}
+  	 <div class="container-mobile">
+        <h4 class="heading">{{ seo_heading[3] }}</h4>
+        <p class="seo_content">{{ seo_content[3] }}</p>
+      </div>
+	 
+      <div class="container-desktop">
+          <h4 class="heading_desktop">{{ seo_heading[3] }}</h4>
+          <p class="seo_content_desktop">{{ seo_content[3] }}</p>
+      </div>
+  {% endif %}
+  
+  {% if seo_heading[4] != blank %}
+  	   <div class="container-mobile">
+        <h4 class="heading">{{ seo_heading[4] }}</h4>
+        <p class="seo_content">{{ seo_content[4] }}</p>
+      </div>
+	 
+      <div class="container-desktop">
+          <h4 class="heading_desktop">{{ seo_heading[4] }}</h4>
+          <p class="seo_content_desktop">{{ seo_content[4] }}</p>
+      </div>
+  {% endif %}
+  
+  {% if seo_heading[5] != blank %}
+  	 <div class="container-mobile">
+        <h4 class="heading">{{ seo_heading[5] }}</h4>
+        <p class="seo_content">{{ seo_content[5] }}</p>
+      </div>
+	 
+      <div class="container-desktop">
+          <h4 class="heading_desktop">{{ seo_heading[5] }}</h4>
+          <p class="seo_content_desktop">{{ seo_content[5] }}</p>
+      </div>
+  {% endif %}
+  
+  {% if seo_heading[6] != blank %}
+  	 <div class="container-mobile">
+        <h4 class="heading">{{ seo_heading[6] }}</h4>
+        <p class="seo_content">{{ seo_content[6] }}</p>
+      </div>
+	 
+      <div class="container-desktop">
+          <h4 class="heading_desktop">{{ seo_heading[6] }}</h4>
+          <p class="seo_content_desktop">{{ seo_content[6] }}</p>
+      </div>
+  {% endif %}
+  
+  {% if seo_heading[7] != blank %}
+  	 <div class="container-mobile">
+        <h4 class="heading">{{ seo_heading[7] }}</h4>
+        <p class="seo_content">{{ seo_content[7] }}</p>
+      </div>
+	 
+      <div class="container-desktop">
+          <h4 class="heading_desktop">{{ seo_heading[7] }}</h4>
+          <p class="seo_content_desktop">{{ seo_content[7] }}</p>
+      </div>
+  {% endif %}
+</div>
+</div>
+
+{% schema %}
+  {
+    "name": "Product SEO",
+    "settings": [
+	],
+	"presets":[
+		{
+          "name": "Product SEO",
+          "category": "text"
+		}
+	]
+  }
+{% endschema %}
+

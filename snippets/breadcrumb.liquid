@@ -1,0 +1,74 @@
+<style>
+  .breadcrumb{
+    margin-top: 10px !important;
+  }
+ .breadcrumb,.breadcrumb a,.breadcrumb span {
+    color: #6C737C;
+    vertical-align: bottom;
+    line-height: 20px;
+    text-transform: capitalize;
+    font-size: 10px;
+    padding: 0 5px;
+    letter-spacing: 0.05em;
+  }
+  .breadcrumb [aria-hidden='true'], [data-a11y-toggle]:not([aria-controls]) {
+    display: inline-block;
+}
+  @media (max-width: 768px) {
+    .breadcrumb {
+      margin-top: 10px;
+      margin-bottom: 10px !important;
+      line-height: 14px;
+    }
+    .breadcrumb,.breadcrumb a,.breadcrumb span{
+      padding: 0 2px;
+      line-height: 20px;
+    }
+  }
+
+</style>
+
+
+{% unless template == 'index' or template == 'cart' or template == 'list-collections' %}
+<nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+  <a href="/" title="Home">Home</a>
+  {% if template contains 'page' %}
+    <span class="arrow" aria-hidden="true">&rsaquo;</span>
+    <span>{{ page.title }}</span>
+  {% elsif template contains 'product' %}
+<!--     {% if collection.url %}
+      <span class="arrow" aria-hidden="true">&rsaquo;</span>
+      {{ collection.title | link_to: collection.url }}
+    {% endif %} -->
+    <span class="arrow" aria-hidden="true">&rsaquo;</span>
+    <span>{{ product.title }}</span>
+  {% elsif template contains 'collection' and collection.handle %}
+    <span class="arrow" aria-hidden="true" style="line-height: 20px !important;">&rsaquo;</span>
+    {% if current_tags %}
+      {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+      {{ collection.title | link_to: url }}
+      <span class="arrow" aria-hidden="true" style="line-height: 20px !important;">&rsaquo;</span>
+      <span>{{ current_tags | join: " + " }}</span>
+    {% else %}
+      <span style="line-height: 20px !important;">{{ collection.title }}</span>
+    {% endif %}
+  {% elsif template == 'blog' %}
+    <span class="arrow" aria-hidden="true">&rsaquo;</span>
+    {% if current_tags %}
+      {{ blog.title | link_to: blog.url }}
+      <span class="arrow" aria-hidden="true">&rsaquo;</span>
+      <span>{{ current_tags | join: " + " }}</span>
+    {% else %}
+    <span>{{ blog.title }}</span>
+    {% endif %}
+  {% elsif template == 'article' %}
+    <span class="arrow" aria-hidden="true">&rsaquo;</span>
+    {{ blog.title | link_to: blog.url }}
+    <span class="arrow" aria-hidden="true">&rsaquo;</span>
+    <span>{{ article.title }}</span>
+  {% else %}
+   <span class="arrow" aria-hidden="true">&rsaquo;</span>
+   <span>{{ page_title }}</span>
+  {% endif %}
+</nav>
+{% endunless %}

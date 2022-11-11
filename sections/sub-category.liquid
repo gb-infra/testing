@@ -1,0 +1,47 @@
+{% if section.settings.subcategory != blank %}	
+<div class="container">
+  	<p class="subcategory-heading">{{ section.settings.subcategory }}</p>
+	<div class="collection-products__grid">
+	{%- for block in section.blocks -%}
+    {% for product in section_products %}
+		<div class="collection-products__product">
+			{%- include "product-grid-item-new" -%}
+		</div>
+	{%- endfor -%}
+      {% endfor %}
+	</div>
+</div>
+{% endif %}
+{% schema %}
+  {
+    "name": "Sub Category",
+    "settings": [
+		{
+			"type": "text",
+			"id": "subcategory",
+			"label": "Heading"
+		}
+	],
+	"blocks": [
+		{
+			"name": "Add Product",
+			"type": "image_picker",
+			"settings": [	
+				{
+					"type": "product",
+					"id": "product",
+					"label": "Your product"
+				}
+			]
+		}
+	],
+	"presets":[
+		{
+			"name": "Sub Category",
+			"category": "slide"
+		}
+	]
+  }
+{% endschema %}
+
+

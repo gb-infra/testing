@@ -1,0 +1,110 @@
+<style>
+  .usp-outerdiv{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    padding: 50px 100px;
+    background-color: #FAFAFA;
+  }
+  .usp-container{
+    display: block;
+    padding: 0 20px;
+  }
+  .icon_image_container{
+    min-height: 32px;
+  }
+  .icon_image{
+  }
+  .icon_heading{
+    display: block;
+    font-family: 'Poppins';
+    font-weight: 500;
+    margin: 10px 0;
+    line-height: 16px;
+    letter-spacing: 0.03em;
+    font-style: normal;
+    font-size: 14px;
+  }
+  .icon_subheading p{
+    font-family: 'poppins';
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    font-style: normal;
+    letter-spacing: 0.03em;
+  }
+  @media (max-width: 769px){
+    .usp-outerdiv {
+      display: block;
+      padding: 20px 8px;
+      margin: 12px;
+      background-color: #FAFAFA;
+    }
+    .icon_heading{
+      line-height: 20px;
+    }
+    .icon_subheading p{
+      line-height: 22px;
+    }
+    .icon_image_container{
+      margin-top: 8px;
+    }
+  }
+</style>
+
+<div class="usp-outerdiv">
+  {% for block in section.blocks %}
+  {% if block.settings.icon_image != blank %}
+    <div class="usp-container">
+      <div class="icon_image_container">
+        <img class="icon_image" src="{{ block.settings.icon_image | img_url }}">
+      </div>
+      <span class="icon_heading">{{ block.settings.icon_heading }}</span>
+      <span class="icon_subheading">{{ block.settings.icon_subheading }}</span>
+    </div>
+  {% endif %}
+  {% endfor %}
+</div>
+
+{% schema %}
+  {
+    "name": "Absorbia USPs",
+    "settings": [
+		{
+			"type": "color",
+			"id": "usp-background",
+			"label": "Background Color",
+			"default": "#E5E5E5"
+		}
+	],
+	"blocks": [
+		{
+          "name": "Add Icon",
+          "type": "image_picker",
+          "settings": [
+			{
+              "type": "image_picker",
+              "id": "icon_image",
+              "label": "Icon Image"
+			},
+			{
+              "type": "text",
+              "id": "icon_heading",
+              "label": "Icon Heading"
+			},
+			{
+              "type": "richtext",
+              "id": "icon_subheading",
+              "label": "Icon Subheading"
+			}
+          ]
+		}
+	],
+	"presets": [
+		{
+			"name": "Absorbia USPs",
+			"category": "image"
+		}
+	]
+  }
+{% endschema %}
+

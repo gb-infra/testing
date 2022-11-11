@@ -1,0 +1,305 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Advent+Pro&family=Poppins:wght@100&display=swap" rel="stylesheet">
+
+<style>
+  .usage-container{
+    background-color: #F8F8F8;
+    text-align: center;
+    padding: 60px;
+  }
+  .usage-heading{
+    font-family: 'Advent Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 120%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #464856;
+  }
+  .usage-description{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 33px;
+    text-align: center;
+    color: #000000;
+    width: 70%;
+    margin: auto;
+    margin-bottom: 36px;
+  }
+  .usage-card-container{
+    margin: 20px 100px;
+  }
+  .usage-card{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+    margin: 20px 40px;
+    padding: 20px;
+  }
+  .info-container{
+    padding-left: 60px;
+    max-width: inherit;
+  }
+  .product-usage,.usage{
+    display: flex;
+    margin-top: 4px;
+  }
+  .product_title{
+    font-family: 'Advent Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 54px;
+    line-height: 120%;
+    color: #000000;
+    float: left;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  .custom-class{
+    color: #11897A;
+    font-weight: 600;
+  }
+  .image-container{
+    min-width: 32%;
+    border-right: 1px solid lightgray;
+  }
+  .perfect{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: #000000;
+    text-align: left;
+    margin-bottom: 12px; 
+  }
+  .usage{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 120%;
+    color: #000000;
+    min-width: 200px;
+  }
+  .usage .check-icons{
+    margin-right: 12px;
+  }
+  .product-link{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #4D4D4D;
+    border: 1px solid #464856;
+    box-sizing: border-box;
+    border-radius: 30px;
+    padding: 8px 28px;
+    float: left;
+    margin-top: 20px;
+  }
+  @media (max-width: 769px){
+    .usage-container{
+      padding: 20px 10px;
+    }
+    .usage-heading{
+      font-size: 28px;
+      text-align: left;
+      margin-bottom: 8px;
+      padding: 0 12px;
+    }
+    .usage-description {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+      text-align: left;
+      width: 100%;
+      padding: 0 12px;
+      letter-spacing: 0.03em;
+    }
+    .usage-card-container {
+      margin: 0;
+    }
+    .usage-card{
+      margin: 20px 10px;
+      display: block;
+      min-height: 0px;
+      border-radius: 20px;
+      border: 1px solid #DFDDDD;
+      position: relative;
+      overflow: hidden;
+    }
+    .image-container{
+      width: 64%;
+      border-right: none;
+      padding: 4px 0 12px 0;
+    }
+    .info-container {
+      padding-left: 0;
+    }
+    .product_title {
+      font-size: 28px;
+      float: left;
+      margin: 12px 0;
+    }
+    .custom-class{
+    }
+    .product-usage{
+      display: grid;
+      grid-template-columns: auto auto;
+    }
+    .perfect{
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+    .usage{
+      font-size: 16px;
+      padding: 4px 0;
+      min-width: auto;
+    }
+    .usage img{
+      max-width: 18px;
+    }
+    .product-link{
+      padding: 4px 28px;
+      margin-top: 16px;
+    }
+  }
+</style>
+
+<div class="usage-container">
+  <h1 class="usage-heading">{{ section.settings.section_heading }}</h1>
+  <h3 class="usage-description">{{ section.settings.section_description }}</h3>
+  <div class="usage-card-container">
+    {% for block in section.blocks %}
+    {% if block.settings.product_image != blank %}
+    	<div class="usage-card">
+          
+          <div class="image-container">
+            {% if block.settings.product_image != blank %}
+            	<img src="{{ block.settings.product_image | img_url: 'x200' }}" alt="product-image"> 
+            {% endif %}
+          </div>
+          
+          <div class="info-container">
+            <div class="product_title"><span>ABSORBIA </span><span class="custom-class">{{ block.settings.product_title }}</span></div>
+           	<p class="perfect">PERFECT FOR</p>
+            <div class="product-usage">
+              
+              {% if  block.settings.product_use_1 != blank %}
+              <div class="usage_1 usage">
+                <div class="check-icons">
+                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M21.3333 0H2.66667C1.18667 0 0 1.2 0 2.66667V21.3333C0 22.8 1.18667 24 2.66667 24H21.3333C22.8133 24 24 22.8 24 21.3333V2.66667C24 1.2 22.8133 0 21.3333 0ZM9.33333 18.6667L2.66667 12L4.54667 10.12L9.33333 14.8933L19.4533 4.77333L21.3333 6.66667L9.33333 18.6667Z" fill="#11897A"/>
+				   </svg>
+              	</div>
+                <p>{{ block.settings.product_use_1 }}</p>
+              </div>
+              {% endif %}
+              
+              {% if  block.settings.product_use_2 != blank %}
+              <div class="usage_2 usage">
+                <div class="check-icons">
+                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M21.3333 0H2.66667C1.18667 0 0 1.2 0 2.66667V21.3333C0 22.8 1.18667 24 2.66667 24H21.3333C22.8133 24 24 22.8 24 21.3333V2.66667C24 1.2 22.8133 0 21.3333 0ZM9.33333 18.6667L2.66667 12L4.54667 10.12L9.33333 14.8933L19.4533 4.77333L21.3333 6.66667L9.33333 18.6667Z" fill="#11897A"/>
+				   </svg>
+              	</div>
+                <p>{{ block.settings.product_use_2 }}</p>
+              </div>
+              {% endif %}
+              
+              {% if  block.settings.product_use_3 != blank %}
+              <div class="usage_3 usage">
+                <div class="check-icons">
+                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M21.3333 0H2.66667C1.18667 0 0 1.2 0 2.66667V21.3333C0 22.8 1.18667 24 2.66667 24H21.3333C22.8133 24 24 22.8 24 21.3333V2.66667C24 1.2 22.8133 0 21.3333 0ZM9.33333 18.6667L2.66667 12L4.54667 10.12L9.33333 14.8933L19.4533 4.77333L21.3333 6.66667L9.33333 18.6667Z" fill="#11897A"/>
+				   </svg>
+              	</div>
+                <p>{{ block.settings.product_use_3 }}</p>
+              </div>
+              {% endif %}
+            
+            </div>
+            <a class="product-link" href="{{ block.settings.product_link }}">{{ block.settings.button_text }}</a>
+          </div>
+    	</div>
+    {% endif %}
+    {% endfor %}
+ 
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Product Usage",
+    "settings": [
+		{
+			"type": "text",
+			"id": "section_heading",
+			"label": "Heading"
+		},
+		{
+			"type": "richtext",
+			"id": "section_description",
+			"label": "Description"
+		}
+	],
+	"blocks":[
+		{
+			"name": "Add Product",
+			"type": "image",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "product_image",
+					"label": "Product Image"
+				},
+				{
+					"type": "text",
+					"id": "product_title",
+					"label": "Product Title"
+				},
+				{
+					"type": "text",
+					"id": "product_use_1",
+					"label": "Product Usage 1"
+				},
+				{
+					"type": "text",
+					"id": "product_use_2",
+					"label": "Product Usage 2"
+				},
+				{
+					"type": "text",
+					"id": "product_use_3",
+					"label": "Product Usage 3"
+				},
+				{
+					"type": "text",
+					"id": "button_text",
+					"label": "Button Text"
+				},
+				{
+					"type": "url",
+					"id": "product_link",
+					"label": "Product Link"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "Product Usage",
+			"category": "text"
+		}
+	]
+  }
+{% endschema %}

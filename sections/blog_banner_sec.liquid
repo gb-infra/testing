@@ -1,0 +1,46 @@
+<style>
+  .mob_img {
+    display: none;
+  }
+  .breadcrumb {
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 16px 0 0;
+}
+  @media screen and (max-width: 767px) {
+    .mob_img {
+    display: block;
+   }
+   .desktop_img {
+    display: none;
+   } 
+  }
+  
+</style>
+<div class="blog_banner">
+  <div class="desktop_img">
+  {{ section.settings.image_1 | img_url: '2048x' | img_tag }}
+  </div> 
+ <div class="mob_img">
+  {{ section.settings.image_1_mob | img_url: '2048x' | img_tag }}
+ </div>  
+</div>
+
+{% schema %}
+{
+  "name": "Image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Web Banner"    
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1_mob",
+      "label": "Mobile Banner"    
+    }
+  ]
+}
+{% endschema %}
+

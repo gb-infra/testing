@@ -1,0 +1,838 @@
+<style>
+  .collection-page .collection-page__product .product-grid-item .product-grid-item__inner .product-grid-item__info .product-grid-item__product-name {
+    max-height: 40px;
+  }
+  .product-grid-item__inner.product-grid-item-new{
+    background: #FFFFFF;
+    border: 1px solid #D7D7D7;
+    box-sizing: border-box;
+    border-radius: 20px !important;
+  }
+  .product-grid-item .product-grid-item__price{
+    color: #000000 !important;
+    font-size: 24px;
+  }
+  @media (min-width: 769px){
+    .atc-container .card-atc-btn{
+      background-color: #11897A !important;
+      border-radius: 30px!important;
+      color: #ffffff !important; 
+      border: none !important;
+      padding: 2px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card-atc-btn svg:not(:root) {
+      overflow: hidden;
+      margin-left: 8px;
+    }
+    .truncate_description{
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 22px;
+      color: #323232;
+      margin: 12px 0;
+    }
+    .collection-page .collection-page__product .product-grid-item .product-grid-item__inner .product-grid-item__info{
+      padding: 20px;
+      padding-top: 0px;
+    }
+    .spr-badge{
+      margin-top: 12px;
+    }
+  }
+  .product-grid-item .product-grid-item__image{
+    margin: 20px;
+/*     border: 1px solid #ccc !important; */
+    border-radius: 20px;
+    margin-bottom: 0;
+  }
+  .product-grid-item .product-grid-item__image img{
+    border-radius: 20px;
+  }
+  .product-grid-item__price{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+   .product-grid-item__product-name_para {
+    height: 46px;
+    align-items: center;
+    display: flex;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .atc_grid {
+    display: flex;
+    justify-content: space-between;
+  }
+  .atc_grid .subscribe_btn_list  {
+    padding: 2px 12px !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+    text-transform: uppercase;
+    height: 40px;
+    margin-top: 15px;
+    font-family: Poppins;
+    outline: none;
+    position: relative;
+  }
+  .atc-btn-hp:hover{
+    color: white !important;
+    background-color: #232323 !important;
+  }
+  
+  .truncate_description:hover{
+    color:#09090a !important;
+  }
+  
+  .loox-rating{
+    display: none;
+  }
+  
+  .product-grid-item__info{
+    min-height: 0px !important;
+  }
+  
+  .product-grid-item__save-amount {
+    display: none;
+  }
+  
+  .product-sale-label {
+    display: none;
+  }
+  
+  @media(min-width:769px){
+    .product-grid-item__product-name{
+      min-height: 0px !important;
+    }
+    .product_Name{
+      font-size: 12px !important;
+      margin-top: 19px !important;
+    }
+    .product-grid-item__product-name_para{
+      font-weight: 600 !important;
+      font-size: 20px !important;
+      color: #333333;
+      font-family: Poppins;
+      font-style: normal;
+      line-height: 22px;
+    }
+    .review-judgeme{
+      margin-bottom: 11px !important;
+    }
+    .product-grid-item__price form{
+       width: 46% !important;
+  	}
+    .product-grid-item .atc-btn-hp.dyn-chk-out {
+       background: #11789A !important;
+       color: #fff !important;
+    }
+    .collection-page .collection-page__product {
+      margin-bottom:40px !important;
+    }
+    .jdgm-hidden{
+      visibility: visible !important;
+    }
+    
+    .jdgm-prev-badge[data-average-rating='0.00'] {
+    	display: block !important;
+    }
+    
+   .jdgm-widget.jdgm-widget {
+      display: block !important;
+    }
+    .jdgm-prev-badge__text{
+      font-size: 12px;
+      line-height: 18px;
+      color: #6D7278;
+      margin-left: 10px;
+    }
+    #perstym{
+      display:none;
+    }
+    #persty{
+       background: white;
+       color: #ED4335;
+       position: absolute;
+       top: 10px;
+       left: 10px;
+       font-size: 12px !important;
+       font-family: Poppins;
+       font-style: normal;
+       font-weight: 600;
+       padding: 4px 12px;
+    } 
+   .product-card-tag{
+     position: absolute;
+     top: 6px;
+     right: 6px;
+     width: auto;
+     padding: 8px 15px;
+     color: #ffffff;
+     font-family: Poppins;
+     font-style: normal;
+     font-weight: 600;
+     font-size: 12px;
+     background-color: #232323;
+     text-transform: uppercase;
+   }
+    .sale_sticker_tag{
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      width: 80px !important;
+    }
+    .outOfStock{
+      background: white;
+      position: absolute;
+      top: 3%;
+      left: 3%;
+      background-color: #FFC107;
+      padding: 8px 12px;
+      font-weight: 600;
+      font-family: Poppins !important;
+      font-style: normal;
+      color: #000000;
+      border-radius: 10px;
+      font-size: 20px;
+    }
+  }
+  
+  @media (max-width:768px) {
+    .product-grid-item__price {
+      display: block;
+      align-items: center;
+    }
+    .product-grid-item__price .money{
+      font-size: 16px !important;
+    }
+    .truncate_description.mob{
+      margin-bottom: 8px;
+      line-height: 20px;
+    }
+    .product-reviews-stars .spr-badge{
+      margin-bottom: 4px;
+    }
+    .collection-page .collection-page__product .product-grid-item .product-grid-item__inner{
+      padding: 8px;
+    }
+	.outOfStock{
+      background-color: #FFC107;
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      color: #fff;
+      padding: 2px 8px;
+      font-weight: 500;
+      font-family: Poppins !important;
+      font-style: normal;
+      font-size: 12px;
+      border-radius: 10px;
+    }
+    .product-grid-item .product-grid-item__price{
+     	font-size: 14px; 
+    }
+    .sale_sticker_tag{
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      width: 60px !important;
+    }
+    .collection-products__product .product-grid-item__info a {
+          margin-bottom: 0;
+    }
+    .owl-dots {
+      display: none;
+    }
+    .collection-products__product .product-grid-item__price form {
+      width: 100% !important;
+    }
+    .collection-page .collection-page__product .product-grid-item .product-grid-item__inner .product-grid-item__info .product-grid-item__product-name {
+   			 min-height: 45px;
+	}
+    #perstym{
+          background: white;
+          color: #ED4335;
+          position: absolute;
+          top: 5px;
+          left: 5px;
+          font-size: 12px !important;
+          font-family: Poppins;
+          font-style: normal;
+          font-weight: 600;
+          padding: 2px 7px;
+    }
+    
+    #persty{
+            display:none;
+    }
+    .product-card-tag{
+       position: absolute;
+       top: 5px;
+       right: 5px;
+       width: auto;
+       padding: 4px 8px;
+       color: #ffffff;
+       font-family: Poppins;
+       font-style: normal;
+       font-weight: 500;
+       font-size: 12px;
+       background-color: #232323;
+       text-transform: uppercase;
+   } 
+    .product_Name{
+      font-size: 10px !important;
+      margin-top: 12px !important;
+    }
+    .product-grid-item__product-name_para{
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 18px;
+        color: #333333;
+        min-height:41.3px;
+    }
+    .review-judgeme{
+      display: none !important;
+    }
+    
+      .product-grid-item__price form{
+    margin-top: 6px !important;
+  }   
+  }
+  
+  .atc-btn-hp{
+    border: 0 !important;
+    color: #fff !important;
+    padding: 6px 16px;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    text-transform: capitalize;
+    border-radius: 30px;
+}
+  .jdgm-prev-badge{margin:5px 0;}
+   .collection-products__product .product-grid-item__info a{
+  	height:20px;
+    color: #000000;
+  }
+  
+  .collection-products__product .truncate_description{
+  	margin-bottom: 10px;
+    line-height: 16px;
+  }
+  
+  .collection-products__product .product-grid-item__price{
+    text-align: left;
+    color: red;
+    font-weight:600;
+  }
+   .product-grid-item__price{
+    text-align: left !important;
+    color: #ED4335 !important;
+    font-weight:600 !important;
+    border-top: 1px solid #ccc;
+    padding-top: 12px !important;
+  }
+  .money{
+    font-weight: 500 !important;
+    font-size: 24px !important;
+    line-height: 32px;
+    color: #000000;
+    font-family: 'poppins';
+  } 
+  .collection-products__product .product-grid-item__price form{
+    width: 50% !important;
+  }
+  .collection-products__product .product-grid-item__price form .dyn-chk-out{
+        background: #232323 !important;
+    color: #fff !important;
+  }
+   .product-grid-item__info a{
+  	text-align: left !important;
+    font-size:16px !important;
+  }
+  @media only screen and (max-width: 766px){
+    .slideshow-hero__container{
+      padding:0px !important;
+    }
+    .product-grid-item__info a{
+      font-size:12px !important;
+    }
+  }
+  @media only screen and (max-width:700px){
+    .atc-text{
+    }
+     .atc_grid {
+        flex-wrap: wrap;
+        flex-direction: column;
+     }
+    .product-grid-item__price form {
+        width: 100%;
+     }
+    .atc_grid .subscribe_btn_list {
+      margin-top: 15px;
+      width: 100%;
+    } 
+    .atc-btn-hp{
+      font-size:12px !important; 
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    .product-grid-item__price{
+      padding-top: 8px !important;
+    }
+  }
+   @media only screen and (min-width:701px){
+     .product-grid-item__info a{
+       font-size:16px !important;
+     }
+  }   
+  .collection-page .collection-page__product.collection-page__product--four {
+    width: 25%;
+  }   
+  .product-grid-item__reviews{
+        text-align: left;
+  }
+  .checkout_button{
+    border: 2px solid black;
+    color: #fff;
+    background: #232323;
+  }
+  .product-grid-item .dyn-chk-out{
+    color: #fff !important;
+    background: #232323 !important;
+  }
+   .product-grid-item__price form {
+         width: 45% !important;
+   } 
+   .atc_grid .atc-btn-hp {
+         width: 100% !important;
+     }
+   .atc_grid .dyn-chk-out {
+     }
+    @media only screen and (max-width: 767px){
+    .product-grid-item__price form {
+        width: 100% !important;
+    }
+     .collection-products__product .product-grid-item__price form{
+      width: 100% !important;
+     }
+    }
+  .jdgm-widget.jdgm-widget {
+      display: block !important;
+      width: 100% !important;
+  }
+  .jdgm-widget * {
+    font-size: 12px !important;
+  }
+  .jdgm-star.jdgm--on:before {
+    color: #ffc107 !important;
+  }
+  
+</style>
+{% assign on_sale = false %}
+{% assign sold_out = true %}
+{% assign view_size_chart = false %}
+{% assign display_countdown = false %}
+{% assign display_limited = false %}
+{% assign display_limited = false %}
+{% assign quantity = 100 %}
+{% assign qty_sold = 0 %}
+{% assign expire  = 72 %}
+{% assign displayquantity = 0 %}
+{% assign show_quantity_bar = false %}
+{% assign startdate = product.published_at | date: "%m/%d/%Y %H:%M:%S" %}
+{% assign size_chart_page = settings.sizing_chart_page %}
+{% assign product_title = product.title %}
+{% assign product_variant = product.selected_or_first_available_variant %}
+{% assign product_variant_price = product_variant.price | money %}
+{% assign product_variant_compare_at_price = product_variant.compare_at_price | money %}
+{% assign is_product_available = product_variant.available %}
+{% assign show_saved_amount = settings.show_saved_amount %}
+{% assign product_layout_option = settings.product_layout_option %}
+{% assign is_to_show_save_amount = false %}
+{% assign is_to_show_sale_label = false %}
+{% assign is_to_show_quickview = settings.collections_quickview %}
+{% assign save_amount_money = 0 %}
+{% assign save_amount_percents = 0 %}
+{% assign products_max_desc_length_enable = settings.products_max_desc_length_enable %}
+{% assign products_max_desc_length = settings.products_max_desc_length %}
+{% assign display_review_star_collection = settings.display_review_star_collection %}
+{% assign badges_enable = settings.badges_enable %}
+{% assign sale_button_option = settings.sale_button_option %}
+{% assign item_style = settings.options_styles %}
+{% assign item_style_class = "" %}
+
+{% if product_variant.compare_at_price > product_variant.price %}
+  {% assign on_sale = true %}
+  {% assign save_amount_money = product_variant.compare_at_price | minus: product_variant.price | money %}
+  {% assign save_amount_percents = product_variant.compare_at_price | minus: product_variant.price | times: 100.0 | divided_by: product_variant.compare_at_price | round %}
+{% endif %}
+
+{% if product_variant.available %}
+  {% assign sold_out = false %}
+{% endif %}
+
+{% for tag in product.tags %}
+  {% assign tag = tag | downcase %}
+
+  {% if tag == "view-size-chart" %}
+    {% assign view_size_chart = true %}
+  {% endif %}
+
+  {% if tag == "display-countdown" %}
+    {% assign display_countdown = true %}
+  {% endif %}
+
+  {% if tag == "display-limited" %}
+    {% assign display_limited = true %}
+  {% endif %}
+
+  {% if tag contains "quantity-" %}
+    {% assign quantity = tag | replace: "quantity-", "" %}
+  {% endif %}
+
+  {% if tag contains "quantitysold-" %}
+    {% assign qty_sold = tag | replace: "quantitysold-", "" %}
+  {% endif %}
+
+  {% if tag contains "limited-default-" %}
+    {% assign limited_default = tag | replace: "limited-default-", "" %}
+  {% endif %}
+
+  {% if tag contains "expire-" %}
+    {% assign expire = tag | replace: "expire-", "" %}
+  {% endif %}
+
+  {% if tag contains "sizechart-" %}
+    {% assign size_chart_page = tag | replace: "sizechart-", "" %}
+  {% endif %}
+
+  {% if tag contains "displayquantity-" %}
+    {% assign displayquantity = tag | replace: "displayquantity-", "" %}
+  {% endif %}
+
+	{% if tag == "show_quantity_bar" %}
+		{% assign show_quantity_bar = true %}
+	{% endif %}
+{% endfor %}
+
+{% if show_saved_amount %}
+  {% unless product_layout_option == "product_none" %}
+    {% if on_sale and is_product_available %}
+      {% assign is_to_show_save_amount = true %}
+    {% endif %}
+  {% endunless %}
+{% endif %}
+
+{% if show_saved_amount %}
+  {% unless product_layout_option == "product_none" and sale_button_option == "sale_button_option_six" %}
+    {% if on_sale and is_product_available %}
+      {% assign is_to_show_sale_label = true %}
+    {% endif %}
+  {% endunless %}
+{% endif %}
+
+{% if products_max_desc_length_enable %}
+  {% assign product_title = product_title | truncate: 15 %}
+{% endif %}
+
+{% if item_style == "Option_1" %}
+  {% assign item_style_class = "product-grid-item--boxes" %}
+{% endif %}
+
+{% if item_style == "Option_2" %}
+  {% assign item_style_class = "product-grid-item--boxes-hover" %}
+{% endif %}
+
+{% case settings.product_transitionn %}
+{% when 'one' %}
+  {% assign image_transition_class = 'product-grid-item__image--fade' %}
+{% when 'two' %}
+  {% assign image_transition_class = 'product-grid-item__image--zoom' %}
+{% when 'three' %}
+  {% assign image_transition_class = 'product-grid-item__image--slide' %}
+{% endcase %}
+{%- capture styles -%}
+	{% assign border_radius = settings.border_radius_products %}
+  	{% if border_radius == "0" %}
+  	  {% assign border_radius = border_radius %}
+  	{% else %}
+  	  {% assign border_radius = border_radius | append: "px" %}
+  	{% endif %}
+{%- endcapture -%}
+{%- assign styles = styles | strip_newlines -%}
+<div class="product-grid-item {{ item_style_class }} js-product-control-wrapper">
+  <div class="product-grid-item__inner  product-grid-item-new" style="{{- styles -}}">
+    <div class="product-grid-item__media{% if settings.resizeimages %} product-grid-item__media--resize{% endif %}">
+      <a href="{{ product.url | within: collection }}" class="product-grid-item__image {{ image_transition_class }}">
+        {%- if settings.lazyload -%}
+          <picture class="lazy">
+            <img data-srcset="{{ product.featured_image | img_url: '400x' | default: '' }} 1x, {{ product.featured_image | img_url: '800x' | default: '' }} 2x"
+                 srcset="{{ product.featured_image | img_url: '40x' | default: '' }}"
+                 alt="{{ product.featured_image.alt }}"
+                 class="first--image {{ settings.product_transitionn }}" width="400" height="400">
+          </picture>
+        {%- else -%}
+          <picture>
+            <img src="{{ product.featured_image | img_url: '400x' | default: '' }} 1x, {{ product.featured_image | img_url: '800x' | default: '' }} 2x"
+                 alt="{{ product.featured_image.alt }}"
+                 class="first--image {{ settings.product_transitionn }}" width="400" height="400">
+          </picture>
+        {%- endif -%}
+        
+        {% if settings.product_display_second_image %}
+          {% if product.images[1] %}
+            {% assign img_url = product.images[1] | img_url: '1x1' | replace: '_1x1.', '_275x.' %}
+
+            {%- if settings.lazyload -%}
+              <picture class="lazy">
+                <img data-srcset="{{ img_url }} 1x, {{ img_url }} 2x"
+                     srcset="{{ img_url }}"
+                     alt="{{ product.alt }}"
+                     class="second--image" width="400" height="400">
+              </picture>
+            {%- else -%}
+              <picture>
+                <img src="{{ img_url }} 1x, {{ img_url }} 2x"
+                     alt="{{ product.alt }}"
+                     class="second--image" width="400" height="400">
+              </picture>
+            {%- endif -%}
+          {% endif %}
+        {% endif %}
+      </a>
+
+      {% if is_to_show_save_amount %}
+        {% if product_layout_option == "product_one" or product_layout_option == "product_three" %}
+          <div class="product-grid-item__save-amount product-grid-item__save-amount--absolute">
+            {{ 'products.product.save' | t }}
+
+            {% if product_layout_option == "product_one" %}
+              <span class="money">
+                                {{ save_amount_money }}
+                            </span>
+            {% endif %}
+
+            {% if product_layout_option == "product_three" %}
+              {{ save_amount_percents }}%
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endif %}
+
+      {% if badges_enable %}
+        {% include "product-badges" %}
+      {% endif %}
+
+      {% if is_to_show_quickview %}
+        <button class="product-grid-item__quick-view js-product-quick-view js-modal-link"
+                data-modal-id="quick-view"
+                data-product-handle="{{ product.handle }}">
+          {{ 'collections.grid.quick_buy' | t }}
+        </button>
+      {% endif %}
+
+      {% if is_to_show_sale_label %}
+        {% if sale_button_option == "sale_button_option_one" %}
+          <div class="product-sale-label product-sale-label--first">
+            {{ 'products.product.sale' | t }}
+
+            <span class="money product-sale-label__amount">
+                {{ save_amount_money }}
+            </span>
+          </div>
+        {% endif %}
+
+        {% if sale_button_option == "sale_button_option_two" %}
+          <div class="product-sale-label product-sale-label--two">
+            {{ 'products.product.save' | t }}
+
+            <span class="money product-sale-label__amount">
+                            {{ save_amount_money }}
+                        </span>
+          </div>
+        {% endif %}
+
+        {% if sale_button_option == "sale_button_option_three" %}
+          <div class="product-sale-label product-sale-label--three">
+            {{ 'products.product.on_sale' | t }}
+          </div>
+        {% endif %}
+
+        {% if sale_button_option == "sale_button_option_four" %}
+          <div class="product-sale-label product-sale-label--four">
+            {{ 'products.product.on_sale' | t }}
+          </div>
+        {% endif %}
+
+        {% if sale_button_option == "sale_button_option_five" %}
+          <div class="product-sale-label product-sale-label--five">
+            {{ 'products.product.sale' | t }}
+          </div>
+        {% endif %}
+      {% endif %}
+      
+      
+       {% assign maxcp = product.variants[0].compare_at_price  %}
+        {% assign maxp = product.variants[0].price  %}
+        {% assign mincp = product.compare_at_price_min  %}
+        {% assign minp = product.price_min  %}
+        {% assign differance = 0 %}
+        {% assign percentage = 0 %}
+        {% if maxcp > maxp %}
+          {% assign differance = maxcp | minus: maxp %}
+            {% assign percentage = differance | times: 100 | divided_by: maxcp %}          
+        {%- endif -%} 
+        {% if product.available %}
+        {% else %}
+          <div class="outOfStock" >Out of Stock</div>
+        {% endif %}
+          
+        {%if product.available %}  
+           {%if percentage != 0 %} 
+          <span id="persty" >{{percentage}}% off</span>
+		   {% endif %}
+        {% endif %}
+      
+       {% if product.available %}
+       {% if percentage > 0 %}
+            <span id="perstym" >{{percentage}}% off</span>
+       {% endif %}
+      {% endif %}
+      
+       {% if product.metafields.my_fields.card_tag != blank %}
+           <div class="product-card-tag">
+              {{ product.metafields.my_fields.card_tag }}
+           </div>
+       {% endif %}
+       
+      
+      {% if settings.sale_sticker != blank %}
+        {% if settings.sale_sticker_clp %}
+          {% if template.name == 'collection' %}
+              <img class="sale_sticker_tag" src="{{ settings.sale_sticker | img_url: 'master' }}">
+          {% endif %}
+      	
+        {% elsif settings.sale_sticker_all %}
+          <img class="sale_sticker_tag" src="{{ settings.sale_sticker | img_url: 'master' }}">
+        {% endif %}
+      {% endif %}
+    </div>
+
+    <div class="product-grid-item__info">
+      <p class="product_Name" style="color: #6D7278; font-family: Poppins;">{{ product.type | truncate: 30}}</p>
+      <a href="{{ product.url | within: collection }}" class="product-grid-item__product-name">
+        <p class="product-grid-item__product-name_para">{{ product.title | truncate: 32 }}</p>
+<!--         <p class="product-grid-item__product-name_para">{{ product.title | truncate:28 }}</p> -->
+      </a>
+      
+      
+      {% if display_review_star_collection %}
+        <div class="product-grid-item__reviews product-reviews-stars" style="text-align: left;">
+          {% if settings.product_review_type == "loox" %}
+            <div class="loox-rating" data-id="{{ product.id }}"
+                 data-rating="{{ product.metafields.loox.avg_rating }}"
+                 data-raters="{{ product.metafields.loox.num_reviews }}"></div>
+          {% endif %}
+
+          {% if settings.product_review_type == "shopify_reviews" %}
+            <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+          {% endif %}
+        </div>
+      {% endif %}
+      
+      <div class="review-judgeme">{% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: false, product: product %}</div>
+      <div class="mob" style="height: 3px"></div>
+      <div class="truncate_description desk">{{product.description | strip_html | truncate: 80}}</div>
+      <div class="truncate_description mob">{{product.description | strip_html | truncate: 48}}</div>
+
+      <div class="product-grid-item__price">
+        {% unless is_product_available %}
+            {{ 'products.product.unavailable' | t }}
+          {% else %}
+            <span class="money js-product-price">
+                {{ product_variant_price }}
+            </span>
+        {% endunless %}
+
+        {% unless product_layout_option == "product_none" %}
+            <span class="money product-grid-item__compare-at-price{% unless on_sale and is_product_available %} hidden{% endunless %} js-product-compare-price" style="font-size: 10px !important;">
+              {% if on_sale and is_product_available %}
+                {{ product_variant_compare_at_price }}
+              {% endif %}
+            </span>
+         {% if product.available %}
+            <form method="post" action="/cart/add">
+              <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+              <input style="display:none;" min="1" type="number" id="quantity" name="quantity" value="1"/>
+ 			  <button type="submit" class="atc-btn-hp card-atc-btn btn">
+              Add To Cart
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14.9083 17.375H5.09168C4.82694 17.3752 4.56977 17.2867 4.36129 17.1235C4.15281 16.9604 4.00507 16.732 3.94168 16.475L1.73335 7.63333C1.7118 7.54725 1.71017 7.45739 1.72858 7.37059C1.747 7.2838 1.78497 7.20234 1.83961 7.13243C1.89426 7.06252 1.96413 7.006 2.04391 6.96716C2.12369 6.92833 2.21128 6.9082 2.30001 6.90833H17.7C17.7887 6.9082 17.8763 6.92833 17.9561 6.96716C18.0359 7.006 18.1058 7.06252 18.1604 7.13243C18.2151 7.20234 18.253 7.2838 18.2714 7.37059C18.2899 7.45739 18.2882 7.54725 18.2667 7.63333L16.0583 16.475C15.995 16.732 15.8472 16.9604 15.6387 17.1235C15.4302 17.2867 15.1731 17.3752 14.9083 17.375V17.375Z" stroke="#D9E031" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8.16667 2.625L5.75 6.90833" stroke="#D9E031" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M11.5667 2.625L13.9917 6.90833" stroke="#D9E031" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+             </button>
+            </form>
+        {% endif %}
+        {% endunless %}
+        <div class="atc_grid">
+       
+<!--         <form method="post" action="/cart/add"> -->
+        
+          {% if settings.dynamic_checkout %}
+          <form method="post" action="/checkout">
+            <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+            <input style="display:none;" min="1" type="number" id="quantity" name="quantity" value="1"/>
+            <input class="dyn-chk-out atc-btn-hp" type="submit" value="Buy Now" class="btn"/>  
+          </form>
+
+          {% endif %}
+        </div>  
+        
+      </div>
+
+      {% if is_to_show_save_amount %}
+        {% if product_layout_option == "product_two" or product_layout_option == "product_four" %}
+          <div class="product-grid-item__save-amount product-grid-item__save-amount--static">
+            {{ 'products.product.save' | t }}
+
+            {% if product_layout_option == "product_two" %}
+              <span class="money">
+                                {{ save_amount_money }}
+                            </span>
+            {% endif %}
+
+            {% if product_layout_option == "product_four" %}
+              {{ save_amount_percents }}%
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endif %}
+
+      {% if template == 'collection' or template == 'collection-list' %}
+        {% include 'product-get-control-new' %}
+      {% endif %}
+
+
+		{% if settings.enable_product_progressbar and product.available and settings.show_progressbar_on_cands %}
+			{% if settings.use_tags_to_display_quantity != true or show_quantity_bar %}
+				{% include 'product-quantity-progress-new' %}
+			{% endif %}
+		{% endif %}
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,157 @@
+<style>
+  .outerdiv{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  .innerdiv{
+    min-width: 80%;
+    max-width: 1400px;
+  }
+  .pcheading{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  .coverage_heading{
+    font-size: 24px;
+    font-family: Poppins !important;
+    font-style: normal;
+    font-weight: 600;
+    color: #232323;
+  }
+  .pc_outerDiv{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+  }
+  .coverage_container{
+    display: flex;
+    margin-bottom: 20px;
+    width: 350px;
+  }
+  .image_container{
+    margin: 0 10px;
+    display: inline-block;
+  }
+  .image_container img{
+    margin-top: 6px;
+    width: 88px;
+    max-width: none;
+  }
+  .press_link p{
+    margin: 0;
+    font-family: Poppins !important;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px !important;
+    color: #000000;
+    line-height: 24px;
+  }
+  .content-container{
+    
+  }
+  .press_content{
+    
+  }
+  @media (max-width: 746px){
+    .pc_outerDiv{
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .coverage_container{
+      width: 100%;
+      padding: 8px 10px;
+      max-width: 90%;
+    }
+  }
+</style>
+
+<div class="outerdiv">
+  <div class="innerdiv">
+    <div class="pcheading"><span class="coverage_heading">{{ section.settings.pc_heading }}</span></div>
+    <div class="pc_outerDiv">
+      {% for block in section.blocks %}
+      {% case block.type %}
+      {% when 'text' %}
+      {% if block.settings.press_image != blank %}
+      <div class="coverage_container">
+        <div class="image_container">
+            <img src="{{ block.settings.press_image | img_url: 'master' }}">
+        </div>
+        <div class="content-container">
+          <a class="press_link" href="{{ block.settings.pc_link }}">
+            <p class="press_content">{{ block.settings.pc_content }}</p>
+          </a>
+        </div>
+      </div>
+      {% endif %}
+      {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+{% schema %} 
+{
+    "name": "Press Coverage",
+    "settings": [
+		{
+			"type": "text",
+			"id": "pc_heading",
+			"label": "Heading"
+		},
+		{
+			"type": "color",
+			"id": "pc_background",
+			"label": "Background Color"
+		},
+		{
+			"type": "color",
+			"id": "pc_heading_color",
+			"label": "Heading Color"
+		},
+		{
+			"type": "color",
+			"id": "pc_content_color",
+			"label": "Content Color"
+		}
+	],
+	"blocks": [
+		{
+          "name": "Add Content",
+		  "type": "text",
+          "settings": [
+			  {
+                  "type": "image_picker",
+                  "id": "press_image",
+                  "label": "Image"
+              },
+			  {
+                  "type": "text",
+                  "id": "pc_content",
+                  "label": "Content"
+              },
+              {
+                  "type": "url",
+                  "id": "pc_link",
+                  "label": "Press Coverage Link"
+              },
+              {
+                  "type": "text",
+                  "id": "pc_date",
+                  "label": "Press Coverage Date"
+              }
+          ]
+		}
+	],
+	"presets":[
+		{
+          "name": "Press Coverage",
+          "category": "text"
+		}
+	]
+  }
+{% endschema %}

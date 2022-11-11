@@ -1,0 +1,176 @@
+<style>
+  .Section-heading{
+    margin-top: 60px;
+    text-align: center;
+  }
+  .Section-heading .heading{
+    font-size: 24px;
+    font-family: 'Poppins';
+    font-weight: 600;
+  }
+  .Section-heading .description{
+    margin: 10px auto;
+    font-family: Poppins !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    display: block;
+    width: 37%;
+    color: #6D7278;
+    line-height: 20px;
+  }
+  .category-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .category-container .category-item{
+    width: 33.33%;
+    max-width: 33.33%;
+    margin-bottom: 20px;
+    position: relative;
+    padding: 8px;
+  }
+  .category-item img{
+  }
+  .category-container .infosection{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: white;
+    width: 78% !important;
+    min-width: 78% !important;
+    padding: 10px;
+  }
+  .infosection .infoHeader{
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.4;
+    margin-left: 5%;
+  }
+  .infosection .infolink{
+    font-family: Poppins;
+    text-decoration: underline;
+    font-size: 12px;
+    margin-left: 5%;
+  }
+  @media (max-width: 748px){
+    .Section-heading {
+    margin-top: 16px;
+    }
+    .Section-heading .heading {
+        font-size: 16px;
+    }
+    .Section-heading .description{
+      font-weight: 400;
+      font-size: 12px;
+      width: 95%;
+      line-height: 20px;
+    }
+    .category-container .category-item{
+      width: 50%;
+      max-width: 50%;
+    }
+    .infosection .infoHeader{
+      font-weight: 600;
+      font-size: 9px;
+      line-height: 1.4;
+    }
+    .category-container .infosection{
+      width: 72% !important;
+      min-width: 72% !important;
+      padding-top: 0;
+    }
+  }
+  .section_title {
+    font-size: 24px;
+    color: #232323;
+    font-weight: 600;
+}
+  @media (min-width: 768px) {
+    .category-container {
+    max-width: 1050px;
+    margin: 0 auto;
+}
+  }
+</style>
+  <div class="Section-heading">
+    <span class="heading">{{ section.settings.category_heading }}</span><br>
+    <span class="description">{{ section.settings.description }}</span>
+  </div>
+  <div class="container">
+    <div class="category-container">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'slide' %}
+          {% if block.settings.category_image != blank %}
+              <div class="category-item">
+                <a href="{{ block.settings.category_link }}">
+                <img src="{{ block.settings.category_image |  img_url: '480x' }}">
+                </a>
+                <div class="infosection">
+                  <span class="infoHeader">{{ block.settings.category_name }}</span><br>
+                  <a class="infolink" href="{{ block.settings.category_link }}">{{ block.settings.shop_text}}</a>
+                </div>
+              </div>
+          {% endif %}
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+
+{% schema %}
+{
+	"name": "Category List",
+	"settings": [
+		{	
+			"type": "text",
+			"id": "category_heading",
+			"label": "Category Heading"
+		},
+		{	
+			"type": "richtext",
+			"id": "description",
+			"label": "Description",
+			"info": "Optional"
+		}
+	],
+	"blocks": [
+		{
+			"name": "Category Item",
+			"type": "slide",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "category_image",
+					"label": "Category Image"
+				},
+				{
+					"type": "text",
+					"id": "category_name",
+					"label": "Category Name"
+				},
+				{
+					"type": "url",
+					"id": "category_link",
+					"label": "Category Link"
+				},
+				{
+					"type": "text",
+					"id": "shop_text",
+					"label": "Category Text"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "Category List",
+			"category": "Collections"
+		}
+	]
+}
+
+{% endschema %}

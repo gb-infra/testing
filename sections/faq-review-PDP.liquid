@@ -1,0 +1,43 @@
+<style>
+  .faq-review-container{
+    background-color: #F8F8F8;
+  }
+  .reviews-section{
+    display: flex;
+    justify-content: space-between;
+  }
+  .faq-side{
+    width: 45%;
+  }
+  .reviews-side{
+    width: 50%;
+  }
+  .spr-container{
+    border: none !important;
+  }
+  @media (max-width: 748px){
+    .reviews-section{
+      display: block;
+      margin: 20px 0 !important;
+    }
+    .faq-side{
+      width: 100%;
+    }
+    .reviews-side{
+      width: 100%;
+    }
+  }
+</style>
+ 
+<div class="faq-review-container">
+  <div class="container">
+    <div class="reviews-section">
+        <div class="faq-side">
+           {% include 'faq-reviews' %}
+        </div>
+      <div class="reviews-side">
+       <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+      </div>
+    </div>
+  </div>
+</div>

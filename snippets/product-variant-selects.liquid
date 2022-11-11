@@ -1,0 +1,71 @@
+<style>
+  .product-heading{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    text-transform: capitalize;
+    color: #464856;
+  }
+  .product-swatch .product-swatch__item-input:checked+.product-swatch__item-label{
+    background: #FFFFFF;
+    border: 1px solid #11897A;
+    box-sizing: border-box;
+    border-radius: 30px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    text-transform: capitalize;
+    color: #11897A;
+  }
+  .product-swatch .product-swatch__item-label{
+    background: #FFFFFF;
+    border: 1px solid #E3E3E3;
+    box-sizing: border-box;
+    border-radius: 40px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    text-transform: capitalize;
+    color: #989898;
+  }
+</style>
+
+{% if product.available and product.variants.size > 1 %}
+	{% for option in product.options_with_values %}
+		{% assign is_size = false %}
+		{% assign option_index = forloop.index0 %}
+		{% assign downcased_option = option.name | downcase %}
+        {% if downcased_option contains 'size' %}
+			{% assign is_size = true %}
+        {% endif %}
+		<div class="product-option-selector js-product-option-selector-{{ option_index | plus: 1 }}">
+          {% if is_size %}
+            {% if settings.display_sizing_chart %}
+              {% if view_size_chart %}
+                <div class="product-sizing">
+                  <a href="#" class="product-sizing__link js-modal-link"
+                     data-modal-id="size-chart">{{ 'products.general.sizing' | t }}</a>
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endif %}
+          
+          <h4 class="product-heading">{{ option.name }}</h4>
+          <select class="select"
+                  data-single-option-selector
+                  data-index="option{{ forloop.index }}">
+            {% for value in option.values %}
+              <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>
+                {{ value }}
+              </option>
+            {% endfor %}
+          </select>
+		</div>
+	{% endfor %}
+{% endif %}

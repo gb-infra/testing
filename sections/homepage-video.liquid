@@ -1,0 +1,316 @@
+<style>
+  .video-container{
+    font-family: 'Poppins' !important;
+  }
+  .uk-position-relative{
+    max-width: max-content;
+    margin: auto;
+    padding: 0 10px;
+  } 
+  .container_video {
+    padding: 0 38px;
+  }
+  .video_contain iframe{
+    width: 100%;
+    height: 250px;
+  }
+   .card_img{
+  width: 100%;
+  }
+  .si{
+    padding-left: 3px;
+    width: 33.3%;
+    min-width: 320px !important;
+    max-width: 400px !important;
+  }
+  .outer-trending{
+  	width: 100%;
+  }
+  .items-cont2{
+    width: 80%;
+    margin: auto;
+  }
+  .head4{
+    font-size: 24px !important;
+    margin: auto;
+    max-width: max-content;
+    margin-bottom: 16px !important;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-family: 'Poppins', sans-serif !important;
+  }
+  .head5{
+    font-size: 19px !important;
+    margin: auto;
+    max-width: max-content;
+    margin-bottom: 20px !important;
+    font-weight: 900;
+    text-transform: capitalize;
+    font-family: 'Poppins', sans-serif !important;
+    display: none;
+  }
+  .view-all{
+    font-family: 'Poppins';
+    text-align: center;
+    text-decoration: underline;
+        margin-bottom: 16px;
+  }
+  @media only screen and (max-width: 600px){
+      .video_contain iframe{
+    height: 112px;
+  }
+    .items-cont{
+    	width: 100%;
+    }
+    .uk-position-relative{
+      width: 100% !important;
+      padding: 0 10px;
+    } 
+    .head4{
+      display: none;
+    }
+    .head5{
+   	  display: block;
+      font-size: 16px !important;
+    }
+  }
+  
+  @media (max-width: 768px){
+    .outer-trending{
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media (min-width: 769px){
+    .video_container{
+      max-width: 4257px;
+      margin: 0 auto;
+    }
+    .head4{
+      margin-top: 40px;
+    }
+    .head5{
+      margin-top: 10px;
+    }
+    .outer-trending{
+      margin-bottom: 60px;
+    }
+  }
+  .xyz{
+    margin:auto 13vw; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 0;
+  }
+  .xyz div{
+    padding: 0 5px;
+  }
+  .owl-nav img {
+    width: 16px;
+  }
+  .owl-nav .owl-prev {
+    position: absolute !important;
+    top: 45%;
+    left: -10px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    background-color: #fff !important;
+    z-index: 999 !important;
+    font-weight: 900;
+    color: black;
+    box-shadow: 1px 1px 5px black;
+    visibility: initial !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+  }
+  .owl-nav .owl-next {
+    position: absolute !important;
+    top: 45%;
+    right: -10px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    background-color: #fff !important;
+    z-index: 999 !important;
+    font-weight: 900;
+    color: black;
+    box-shadow: 1px 1px 5px black;
+    visibility: initial !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+  }
+  @media only screen and (max-width: 749px){
+    .container_video .video_title {
+    font-size: 14px !important;
+    margin: 8px 0 16px;
+    }
+    .xyz{
+      margin: auto 4vw;
+    }
+    .owl-nav {
+      display: none;
+    }
+    .container_video{
+          padding:0 0 0 8px;
+          margin-bttom: 8px;
+    }
+  }
+  .video_card_desktop{
+    display: none !important;
+  }
+  .video_card_mobile{
+    display: block !important;
+  }
+  @media (min-width: 748px){
+    .video_card_desktop{
+      display: block !important;
+    }
+    .video_card_mobile{
+      display: none !important;
+    }
+  }
+  .video_card_desktop{
+    width: 94%;
+  }
+  .kit_container{
+    margin-top: 5px;
+  }
+  .video_title{
+    font-size: 18px !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: black;
+    line-height: 20px;
+    margin: 20px 0;
+  }
+</style>
+<div class="container_video">
+<div class="video_container">
+    <div class="head4">
+<!--       <span class="collection-products__slider-arrow collection-products__slider-arrow--prev js-collection-products-prev"> &#60;&nbsp;&nbsp;&nbsp;&nbsp; </span> -->
+        {{ section.settings.heading }}
+<!--       <span class="collection-products__slider-arrow collection-products__slider-arrow--next js-collection-products-next"> &nbsp;&nbsp;&nbsp;&nbsp;&#62; </span> -->
+    </div>
+    <div class="head5">
+<!--       <span class="collection-products__slider-arrow collection-products__slider-arrow--prev js-collection-products-prev"> &#60;&nbsp;&nbsp; </span> -->
+        {{ section.settings.heading }}
+<!--       <span class="collection-products__slider-arrow collection-products__slider-arrow--next js-collection-products-next">&nbsp;&nbsp;&#62; </span> -->
+    </div>
+  
+ 		 <div class="collection-products__slider-wrapper kit_container">
+				<div class="owl-carousel video_slider">
+					{% for block in section.blocks %}
+                    {% case block.type %}
+                    {% when 'slide' %}
+                    {% if block.settings.video_thumbnail_D != blank %}
+                      <div>
+                        <a>
+<!--                           <img class="video_card_mobile card_img0" src="{{ block.settings.video_thumbnail_M |  img_url: 'master' }}" alt=""/> -->
+                          <img class=" card_img0" video-src="{{ block.settings.video_link }}" src="{{ block.settings.video_thumbnail_D |  img_url: 'master' }}" alt=""/>
+                          <div class="video_contain"></div>
+                        </a>
+                        {% if block.settings.video_title != blank %}
+                        	<p class="video_title">{{ block.settings.video_title }}</p>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                    {% endcase %}
+                    {% endfor %}
+				</div>
+			</div>
+</div>
+</div>
+
+<script>
+  
+  $('.video_slider').owlCarousel({
+    loop:false,
+    margin:16,
+    nav:true,
+    navText: ["<img src='https://cdn.shopify.com/s/files/1/0007/2659/7747/files/right-arrow_2.png?v=1632909988'>","<img src='https://cdn.shopify.com/s/files/1/0007/2659/7747/files/right-arrow_2_1.png?v=1632910057'>"],
+    responsive:{
+        0:{
+            items:1.5
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:3
+        }
+    }
+})
+</script>
+<script>
+$(document).ready(function(){
+  $('.card_img0').on( "click", function() {
+    var URL = $(this).attr('video-src');
+    //var htm = '<iframe loading="lazy" srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href="' + URL + '"><img src=https://img.youtube.com/vi/HAVNjYrhBmA/hqdefault.jpg alt=''><span>▶</span></a>" style="display:none" width="94%" height="auto" class="card_vid0" src="https://www.youtube.com/embed/HAVNjYrhBmA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    var htm = '<iframe loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="iframe_box" src="' + URL + '" frameborder="0" allowfullscreen ></iframe>';
+    $(this).next().html(htm);
+    console.log( $( this ).next() );
+ 		 $(this).css({"display":"none"});
+         $(this).next().css({"display":"block"});
+           if(window.innerWidth>700){
+         // $(this).next().css({"height":"37vh"});
+        }
+  });
+});
+</script>
+
+{% schema %}
+  {
+    "name": "Video Slider",
+    "settings": [
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Slider Heading"
+		}
+	],
+	"blocks": [
+		{
+			"name": "Add Video",
+			"type": "slide",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "video_thumbnail_M",
+					"label": "Video Thumbnail (Desktop)"
+				},
+				{
+					"type": "image_picker",
+					"id": "video_thumbnail_D",
+					"label": "Video Thumbnail (Mobile)"
+				},
+				{
+					"type": "url",
+					"id": "video_link",
+					"label": "Video Link"
+				},
+				{
+					"type": "text",
+					"id": "video_title",
+					"label": "Video Title"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "Video Slider",
+			"category": "videos"
+		}
+	]
+  }
+{% endschema %}

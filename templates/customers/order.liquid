@@ -1,0 +1,603 @@
+<div class="wrapper header-space">
+<div class="wrapper">
+
+{% include 'breadcrumb' %}
+{%comment%}
+  <header class="section-header">
+    <h1 class="section-header__left">{{ 'customer.account.title' | t }}</h1>
+    <div class="section-header__right">
+      <a href="/account">{{ 'customer.account.return' | t }}</a>
+    </div>
+  </header>
+
+  <hr class="hr--small">
+
+  <div class="grid">
+
+    <div class="grid__item two-thirds medium-down--one-whole">
+      <h2 class="h4">{{ 'customer.order.title' | t: name: order.name }}</h2>
+
+      <p>{{ 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y %I:%M%p" }}</p>
+
+      {% if order.cancelled %}
+      <div class="errors">
+        {% assign cancelled_at = order.cancelled_at | date: "%B %d, %Y %I:%M%p" %}
+        <p class="h5">{{ 'customer.order.cancelled' | t: date: cancelled_at }}</p>
+        <p>{{ 'customer.order.cancelled_reason' | t: reason: order.cancel_reason }}</p>
+      </div>
+      {% endif %}
+
+      <div class="table-wrap">
+        <table class="full">
+          <thead>
+            <tr>
+              <th>{{ 'customer.order.product' | t }}</th>
+              <th>{{ 'customer.order.sku' | t }}</th>
+              <th>{{ 'customer.order.price' | t }}</th>
+              <th class="text-right">{{ 'customer.order.quantity' | t }}</th>
+              <th class="text-right">{{ 'customer.order.total' | t }}</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            {% for line_item in order.line_items %}
+            <tr id="{{ line_item.key }}">
+              <td>
+                {{ line_item.title | link_to: line_item.product.url }}
+<!--                 {% if line_item.fulfillment %}
+                <div class="note">
+                  {% assign created_at = line_item.fulfillment.created_at | date: format: 'month_day_year' %}
+                  {{ 'customer.order.fulfilled_at' | t: date: created_at }}
+                  {% if line_item.fulfillment.tracking_number %}
+                  <a href="{{ line_item.fulfillment.tracking_url }}">{{ line_item.fulfillment.tracking_company }} #{{ line_item.fulfillment.tracking_number}}</a>
+                  {% endif %}
+                </div>
+                {% endif %} -->
+              </td>
+              <td>{{ line_item.sku }}</td>
+              <td>{{ line_item.price | money }}</td>
+              <td class="text-right">{{ line_item.quantity }}</td>
+              <td class="text-right">{{ line_item.quantity | times: line_item.price | money }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4">{{ 'customer.order.subtotal' | t }}</td>
+              <td class="text-right">{{ order.subtotal_price | money }}</td>
+            </tr>
+
+            {% for discount in order.discounts %}
+            <tr class="order_summary discount">
+              <td colspan="4">{{ discount.code }} {{ 'customer.order.discount' | t }}</td>
+              <td class="text-right">{{ discount.savings | money }}</td>
+            </tr>
+            {% endfor %}
+
+            {% for shipping_method in order.shipping_methods %}
+            <tr>
+              <td colspan="4">{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</td>
+              <td class="text-right">{{ shipping_method.price | money }}</td>
+            </tr>
+            {% endfor %}
+
+            {% for tax_line in order.tax_lines %}
+            <tr>
+              <td colspan="4">{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</td>
+              <td class="text-right">{{ tax_line.price | money }}</td>
+            </tr>
+            {% endfor %}
+
+            <tr>
+              <td colspan="4"><strong>{{ 'customer.order.total' | t }}</strong></td>
+              <td class="text-right"><strong>{{ order.total_price | money }} {{ order.currency }}</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="grid__item one-third medium-down--one-whole">
+
+      <h2 class="h4">{{ 'customer.order.billing_address' | t }}</h2>
+
+      <p><strong>{{ 'customer.order.payment_status' | t }}:</strong> {{ order.financial_status_label }}</p>
+
+      <h3 class="h5">{{ order.billing_address.name }}</h3>
+      <p>
+        {% if order.billing_address.company != '' %}
+        {{ order.billing_address.company }}<br>
+        {% endif %}
+        {{ order.billing_address.street }}<br>
+        {{ order.billing_address.city }}<br>
+        {% if order.billing_address.province != '' %}
+        {{ order.billing_address.province }}<br>
+        {% endif %}
+        {{ order.billing_address.zip | upcase }}<br>
+        {{ order.billing_address.country }}<br>
+        {{ order.billing_address.phone }}
+      </p>
+
+      <h2 class="h4">{{ 'customer.order.shipping_address' | t }}</h2>
+
+      <p><strong>{{ 'customer.order.fulfillment_status' | t }}:</strong> {{ order.fulfillment_status_label }}</p>
+
+      <h3 class="h5">{{ order.shipping_address.name }}</h3>
+      <p>
+        {% if order.shipping_address.company != '' %}
+        {{ order.shipping_address.company }}<br>
+        {% endif %}
+        {{ order.shipping_address.street }}<br>
+        {{ order.shipping_address.city }}<br>
+        {% if order.shipping_address.province != '' %}
+        {{ order.shipping_address.province }}<br>
+        {% endif %}
+        {{ order.shipping_address.zip | upcase }}<br>
+        {{ order.shipping_address.country }}<br>
+        {{ order.shipping_address.phone }}
+      </p>
+
+    </div>
+
+  </div>
+  {%endcomment%}
+  
+  <style>
+    .breadcrumb {
+ 	   margin-top: 120px;
+     }
+    .fin_order_details{display:flex; justify-content:flex-start; width:50%; margin-right:7%; margin-top:10px;}
+    .fin_line{width:60%;}
+    .prod_details{border-bottom: 1px solid #E3E3E3;}
+    .prod_details th{padding:10px 15px; font-size:12px; font-weight:400; color:#6D7278}
+    .prod_detail td{padding:10px 15px;}
+    .prod_detail td a {font-size: 12px;}
+    .ord_details th{padding:10px 15px 5px 15px; font-size:12px; font-weight:400; color:#6D7278}
+    .ord_detail td{padding:0px 15px 10px 15px; text-transform:uppercase; font-size:14px; font-weight:500;}
+    .h4{font-size:12px; color:#6D7278;}
+    .h5{font-size:14px; font-weight:600;}
+    .shipping_details{font-size:14px; font-weight:500;}
+    .billing_details{font-size:14px; font-weight:500;}
+    .ul-li li{margin:20px 10px; padding:12px 0 12px 17px}
+    .active-li{background-color: #11897a; color:white;}
+    .shipment_heading{font-size:12px; color:#6D7278; text-transform:uppercase;}
+    .mobile{display:none;}
+    .nav_content{width:20%; font-size:14px; font-weight:500;}
+   	a{font-size:14px; color:black !important; font-weight: 500; }
+    @media only screen and (max-width: 600px){
+      .prod_details th:first-child {
+            min-width: 150px;
+      }
+      .wrapper {   
+        padding: 0 5px;
+		}
+      .breadcrumb {
+ 	   margin-top: 80px;
+     }
+      .ship_col {
+        width: 100% !important;
+      }
+      .sku{display:none !important;}
+      .mobile{display:block;}
+      .desktop{display:none;}
+      .main_section{flex-direction:column;}
+      .nav_content{width:100%;}
+      .hr_div_2{flex-direction:column;}
+      .order_detail_box{width:100%}
+      .prod_details{border:1px solid #E3E3E3;}
+      .v_div{width:100% !important; border:0px !important; margin-top: 15px;}
+      .fin_order{border-bottom:1px solid #E3E3E3;}
+      .fin_order_details{width:100%;}
+      .order_detail_box{width:100% !important; border:0px !important;}
+      .fin_order{align-items: flex-start !important; padding:5px 12px !important;}
+      .v_div_2{width:100% !important;}
+      .each-shipment{flex-direction:column;}
+      .col1{width:auto !important;  margin:0px !important;}
+      .order_detail_box{width:100% !important;}
+      .account_detail_box{width:100% !important;}
+      .addresses_detail_box{width:100% !important;}
+      .main_section {
+        margin-bottom: 0 !important;
+       }
+    }
+  </style>
+
+  
+  
+  <div class="main_section" style="display:flex; justify-content:space-between; margin-bottom:100px; ">
+    <div class="nav_content"><ul class="ul-li" style="border: 1px solid #E3E3E3">
+      <li data-pt="account_detail_box">Account Details</li>
+      <li data-pt="addresses_detail_box">My Addresses</li>
+      <li class="active-li" data-pt="order_detail_box">My Orders</li>
+      <li><a href="/account/logout">Logout</a></li>
+     </ul></div>
+    <div class="account_detail_box" style="display:none; border: 1px solid #E3E3E3; width: 77%; padding:20px;">
+      <h1>Account Details</h1>
+      <p style="font-size: 20px;
+    font-weight: 500;
+    margin-top: 20px;">{{customer.name}}</p>
+      <p style="font-size:14px;"><strong>Email</strong> : {{customer.email}}</p>
+      <p style="font-size:14px;"><strong>Orders to date</strong> : {{customer.orders_count}}</p>
+      {%if customer.phone%}
+      <p style="font-size:14px;">Contact Number : {{customer.phone}}</p>
+      {%endif%}
+    </div>
+    <div class="addresses_detail_box" style="display:none; border: 1px solid #E3E3E3; width: 77%; padding:20px;">
+      <h1 style="font-size:20px; font-weight:600; margin:20px 0px;">Registered Addresses</h1>
+      <h3 style="margin:10px; font-size:18px;">Default Address</h3>
+      <p style="padding:10px; background:#8080801a;">
+      {% if customer.default_address.company != '' %}
+        {{ customer.default_address.company }}<br>
+        {% endif %}
+        {{ customer.default_address.street }}<br>
+        {{ customer.default_address.city }}<br>
+        {% if customer.default_address.province != '' %}
+        {{ customer.default_address.province }}<br>
+        {% endif %}
+        {{ customer.default_address.zip | upcase }}<br>
+        {{ customer.default_address.country }}<br>
+        {{ customer.default_address.phone }}
+      </p>
+      <h3 style="margin:10px; font-size:18px;">All Addresses</h3>
+      <p style="padding:0 10px;">
+        {% for address in customer.addresses %}
+  			{% if address.company != '' %}
+        	{{ address.company }}<br>
+            {% endif %}
+            {{ address.street }}<br>
+            {{ address.city }}<br>
+            {% if address.province != '' %}
+            {{ address.province }}<br>
+            {% endif %}
+            {{ address.zip | upcase }}<br>
+            {{ address.country }}<br>
+            {{ address.phone }}	
+            {% endfor %}
+      	
+      </p>
+    </div>
+  <div class="order_detail_box" style="display:flex; flex-direction:column; border: 1px solid #E3E3E3;
+ width:77%;">
+    <div class="hr_div" >
+    <table class="desktop">
+           <thead>
+            <tr class="ord_details">
+              <th>ORDER NUMBER</th>
+              <th>ORDER DATE</th>
+              <th>ORDER TOTAL</th>
+              <th>PAYMENT</th>
+              <th>ORDER STATUS</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="ord_detail">
+              <td class="order_id">
+                {{ order.name }}
+              </td>
+              <td>{{ 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y %I:%M%p" }}</td>
+              <td>{{ order.total_price | money }} {{ order.currency }}</td>
+              <td>{{ order.financial_status_label }}</td>
+				 {% if order.cancelled != true %}
+              <td style="color:#11897a">{{ order.fulfillment_status_label }}</td>
+              {%else%}
+				<td style="color:#11897a">CANCELLED</td>
+				{%endif%}
+            </tr>
+          </tbody>
+      	</table>
+      <table class="mobile">
+           <thead>
+            <tr class="ord_details">
+              <th>ORDER NUMBER</th><td class="order_id">
+                {{ order.name }}
+              </td>
+             </tr>
+             <tr class="ord_details">
+              <th>ORDER DATE</th><td>{{ 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y %I:%M%p" }}</td>
+             </tr>
+             <tr class="ord_details">
+              <th>ORDER TOTAL</th><td>{{ order.total_price | money }} {{ order.currency }}</td>
+             </tr>
+             <tr class="ord_details">
+              <th>PAYMENT</th><td>{{ order.financial_status_label }}</td>
+             </tr>
+             <tr class="ord_details">
+              <th>ORDER STATUS</th><td style="color:#56ABB0">{{ order.fulfillment_status_label }}</td>
+             </tr>  
+          </thead>
+          <tbody>
+            <tr class="ord_detail">
+              
+            </tr>
+          </tbody>
+      	</table>
+    </div>
+    <div class="hr_div_2" style="display:flex;">
+      <div class="v_div" style="display:flex; flex-direction:column; border-top: 1px solid #E3E3E3; width:70%; border-right: 1px solid #E3E3E3;">
+      	<table style="height:100%">
+           <thead>
+            <tr class="prod_details">
+              <th>{{ 'customer.order.product' | t }}</th>
+              <th class="sku">{{ 'customer.order.sku' | t }}</th>
+              <th width="100">{{ 'customer.order.price' | t }}</th>
+              <th class="text-right" >{{ 'customer.order.quantity' | t }}</th>
+              <th class="text-right" width="100">{{ 'customer.order.total' | t }}</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            {% for line_item in order.line_items %}
+            <tr class="prod_detail" id="{{ line_item.key }}">
+              <td>
+                {{ line_item.title | link_to: line_item.product.url }}
+<!--                 {% if line_item.fulfillment %}
+                <div class="note">
+                  {% assign created_at = line_item.fulfillment.created_at | date: format: 'month_day_year' %}
+                  {{ 'customer.order.fulfilled_at' | t: date: created_at }}
+                  {% if line_item.fulfillment.tracking_number %}
+                  <a href="{{ line_item.fulfillment.tracking_url }}">{{ line_item.fulfillment.tracking_company }} #{{ line_item.fulfillment.tracking_number}}</a>
+                  {% endif %}
+                </div>
+                {% endif %} -->
+              </td>
+              <td class="sku">{{ line_item.sku }}</td>
+              <td>{{ line_item.price | money }}</td>
+              <td class="text-right">{{ line_item.quantity }}</td>
+              <td class="text-right">{{ line_item.quantity | times: line_item.price | money }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+      	</table>
+        <div class="fin_order" style="border-top: 1px solid #E3E3E3; display:flex; flex-direction:column; align-items:flex-end">
+           <div class="fin_order_details">
+              <p colspan="4" class="fin_line">SUBTOTAL</p>
+              <p>{{ order.subtotal_price | money }}</p>
+            </div>
+            {% for discount in order.discounts %}
+            <div class="order_summary fin_order_details">
+              <p class="fin_line" >DISCOUNT</p>
+              <p>{{ discount.savings | money }}</p>
+            </div>
+            {% endfor %}
+
+            {% for shipping_method in order.shipping_methods %}
+            <div class="fin_order_details">
+              <p colspan="4" class="fin_line">SHIPPING</p>
+              <p>{{ shipping_method.price | money }}</p>
+            </div>
+            {% endfor %}
+
+            {% for tax_line in order.tax_lines %}
+            <div class="fin_order_details">
+              <p colspan="4" class="fin_line">TAX ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</p>
+              <p>{{ tax_line.price | money }}</p>
+            </div>
+            {% endfor %}
+
+            <div class="fin_order_details">
+              <p style="font-weight:600;" colspan="4" class="fin_line"><strong>TOTAL</strong></p>
+              <p style="font-weight:600;"><strong>{{ order.total_price | money }} {{ order.currency }}</strong></p>
+            </div>
+
+		</div>
+      </div>
+      <div class="v_div_2" style="width:30%; padding:20px; border-top: 1px solid #E3E3E3; height:100%">
+
+      <h2 class="h4">SHIP TO</h2>
+
+<!--       <p><strong>{{ 'customer.order.fulfillment_status' | t }}:</strong> {{ order.fulfillment_status_label }}</p> -->
+
+      <h3 class="h5">{{ order.shipping_address.name }}</h3>
+      <p class="shipping_details">
+<!--         {% if order.shipping_address.company != '' %}
+        {{ order.shipping_address.company }}<br>
+        {% endif %} -->
+        {{ order.shipping_address.street }}<br>
+        {{ order.shipping_address.city }}<br>
+        {% if order.shipping_address.province != '' %}
+        {{ order.shipping_address.province }}<br>
+        {% endif %}
+        {{ order.shipping_address.zip | upcase }}<br>
+        {{ order.shipping_address.country }}<br>
+        {{ order.shipping_address.phone }}
+      </p>
+        
+        <br><br>
+		 <h2 class="h4">BILLING ADDRESS</h2>
+
+<!--       <p><strong>{{ 'customer.order.payment_status' | t }}:</strong> {{ order.financial_status_label }}</p> -->
+
+      <h3 class="h5">{{ order.billing_address.name }}</h3>
+      <p class="billing_details">
+<!--         {% if order.billing_address.company != '' %}
+        {{ order.billing_address.company }}<br>
+        {% endif %} -->
+        {{ order.billing_address.street }}<br>
+        {{ order.billing_address.city }}<br>
+        {% if order.billing_address.province != '' %}
+        {{ order.billing_address.province }}<br>
+        {% endif %}
+        {{ order.billing_address.zip | upcase }}<br>
+        {{ order.billing_address.country }}<br>
+        {{ order.billing_address.phone }}
+      </p>
+
+	  </div>
+	</div>
+    </div>
+  </div>
+  <p style="font-size:18px; font-weight:600;">Shipments</p>
+  <div id="text1">
+  </div>
+</div>
+
+</div>
+<script>
+
+//     let pqr = document.getElementsByClassName('order_id')[0].innerText
+
+  
+  function loadShipments(order_id_v){
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  var order_id = document.getElementsByClassName('order_id')[0].innerText;
+  var query = "{\n  shipments(first:10,shopifyOrderId:\"#1075\",shopifyStoreId:\"59881128130\"){\n    edges{\n      node{\n        shipmentId\n        storeId\n        courierName\n        awbNumber\n        fulfillmentId\n        estimateDeliveryDate\n    phone\n    trackingUrl\n        deliveredAt\n        createdAt\n        status\n        invoiceUrl\n        id\n        items{\n          id\n          itemName\n          itemQuantity\n        }\n        order{\n          id\n          status\n          trackingClientId   \n          shippingAddress{\n            phone\n          }\n          billingAddress{\n            phone\n          }\n          lines{\n            productName\n            quantity\n            variant{\n              sku\n            }\n          }\n        }\n      }\n    }\n  }\n}";
+  query = query.replace("#1075",order_id_v)
+  var graphql = JSON.stringify({
+    query: query,
+    variables: {}
+  })
+  
+  const url = "https://globalbeesapi.farziengineer.co/graphql/";
+  
+  var opts = {
+    method: 'POST',
+    headers: myHeaders,
+    body: graphql,
+    redirect: 'follow'
+  };
+    
+    
+  function createsubString(str, s, e) {
+    if(str==null || e>str.length)
+      return str;
+    else
+    {
+      const d = new Date(str);
+      return d;
+    }
+  }
+    
+fetch(url, opts)
+    .then(res => res.json())
+    //.then(console.log)
+    .then(
+      ({ data }) => {
+        text1 = ''	
+        if(data.shipments.edges.length==0)
+              text1+= noshipment()
+            
+            
+          text = ''
+          
+          for(i=0;i<data.shipments.edges.length;i++){
+            text = ''
+            for(j=0;j<data.shipments.edges[i].node.items.length;j++){
+             text +=  orderHtml(data.shipments.edges[i].node.items[j]);
+            }
+            text1+=shipmentHtml(data.shipments.edges[i])+ createsubString(data.shipments.edges[i].node.createdAt, 0, 10)
+            if(data.shipments.edges[i].node.estimateDeliveryDate != null){
+            text1+=afterdateHtml(data.shipments.edges[i])+createsubString(data.shipments.edges[i].node.estimateDeliveryDate, 0, 10)}
+            else{
+            text1+=afterdateHtml(data.shipments.edges[i])+createsubString('N/A', 0, 10)
+            }
+            text1+=afterdateHtml1(data.shipments.edges[i])+text+shipmentHtml1(data.shipments.edges[i]);
+            let str1 = "in_transit";
+			let str2 = "delivered";
+            if(str1.localeCompare(data.shipments.edges[i].node.status) === 0)
+				text1+=trans(data.shipments.edges[i]);
+            else if(str2.localeCompare(data.shipments.edges[i].node.status) === 0)
+              text1+=delivered(data.shipments.edges[i]);
+            else
+              text1+=unfulfill(data.shipments.edges[i]);
+              
+          }
+          document.getElementById("text1").innerHTML = text1;
+        }
+    )
+    .catch(console.error);
+}
+
+function noshipment () {
+    return `<div style="display:flex; align-items:center; font-size:15px;"> No shipments found .</div>`
+  }
+  
+  
+function shipmentHtml(data){
+
+  return `<div class="each-shipment" style="display:flex; margin: 25px 0px; padding: 15px; width: 100%; border: 1px solid #E3E3E3;">
+			<div class="col1" style="flex:30%; display:flex; width: 400px; flex-direction: column; justify-content: center; margin:0 20px 0 20px;">
+<h2 class='shipment_heading'>AWB Number: </h2><p style="font-size: 14px; font-weight:500; color: #232323">${data.node.awbNumber}</p> 
+            	<h2 class='shipment_heading'>Dispatch Date: </h2><p style="font-size: 14px; font-weight:500; color: #232323">
+	`
+}
+  
+  function afterdateHtml(data) {
+  return `</p><h2 class='shipment_heading'>ETA: </h2><p style="font-size: 14px; font-weight:500; color: #232323">`
+  }
+  
+  function afterdateHtml1(data) {
+  return `
+  				</p>
+             </div>    
+		
+			<div class="col2 ship_col" style="flex:30%; display:flex; flex-direction: column; width: 400px; margin-right: 55px;">
+				<h2 class='shipment_heading'>PACKAGE CONTENT: </h2>
+				<br/>
+                <table style="width:100%; border: 0px;">
+		`
+}
+  
+function orderHtml(data1){
+
+return `
+          <tr>
+<th><p style="font-size: 14px; font-weight:400; color: #232323;">${data1.itemName}</p></th>
+          <th><p style="font-size: 14px; font-weight:400; color: #232323;">${data1.itemQuantity}</p></th>
+           </tr>
+          `
+}
+             
+function shipmentHtml1(data){
+
+ return `
+            </table>
+          	</div>    
+
+			<div class="col2" style="flex:30%; display:flex; flex-direction: column; margin-right:20px;">
+                    <h2 class='shipment_heading'>ORDER STATUS </h2>
+					<h2 style="margin:10px 0; font-size:17px; color: #0cb347; letter-spacing: 0.5px;">${data.node.status}</h2>
+					
+			`	
+}
+  
+function trans(data){ 
+   return `
+          <input type = "button" onclick=" window.open('${data.node.trackingUrl}','_blank')" value = "Track Shipment" style="color: #3A3D3C; background:white; cursor: pointer;">  
+       </div>
+     </div>
+          `
+}
+  
+function unfulfill(data){ 
+   return `</div>
+     	</div>`
+}
+  
+function delivered(data){ 
+   return `
+          <input type = "button" onclick = "location.href='${data.node.trackingUrl}'" value = "Track" style="color: #3A3D3C; background:white; cursor: pointer;">  
+			
+       	  <input type = "button"  onclick=" window.open('https://globalbees.clickpost.ai/returns?order_id=${data.node.shipmentId}&mobile=${data.node.phone}','_blank')"  value = "Return or Replace" style="color: #3A3D3C; background:white; cursor: pointer; margin-top:10px;">  
+  		</div>
+     </div>
+          `
+}
+
+
+  loadShipments('{{order.name}}');
+                
+    $('.ul-li li').on('click', function(e){
+  let efg = $('.active-li').attr('data-pt');
+      $(`.${efg}`).hide();
+      $('.active-li').removeClass('active-li');
+      $(e.target).addClass('active-li')
+  let pqr = $(e.target).attr('data-pt');
+      $(`.${pqr}`).show();
+  })
+
+</script>
+
+

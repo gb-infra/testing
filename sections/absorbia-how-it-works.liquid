@@ -1,0 +1,87 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Advent+Pro&family=Poppins:wght@100&display=swap" rel="stylesheet">
+
+<style>
+  .works-heading{
+    font-family: 'Advent Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 120%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #464856;
+  }
+  .works-desktop{
+      display: block;
+      padding: 40px;
+   }
+  .works-mobile{
+      display: none;
+  }
+  .image-container-desktop{
+    display: flex;
+    justify-content: center;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 20px;
+    margin: 40px;
+  }
+  @media (max-width: 769px){
+    .works-heading{
+      font-size: 32px;
+    }
+    .works-desktop{
+      display: none;
+    }
+    .works-mobile{
+      display: block;
+    }
+    .image-container-desktop{
+      border: none;
+    }
+  }
+</style>
+
+{% if section.settings.works-desktop != blank %}
+{% if section.settings.works-mobile != blank %}
+<div class="container">
+  <h1 class="works-heading">{{ section.settings.works-heading }}</h1>
+  	<div class="image-container-desktop">
+      <img class="works-desktop" src="{{ section.settings.works-desktop | img_url: 'master' }}">
+      <img class="works-mobile" src="{{ section.settings.works-mobile | img_url: 'master' }}">
+  	</div>
+</div>
+{% endif %}
+{% endif %}
+
+{% schema %}
+  {
+    "name": "How it Works",
+    "settings": [
+		{
+			"type": "text",
+			"id": "works-heading",
+			"label": "Heading"
+		},
+		{
+			"type": "image_picker",
+			"id": "works-desktop",
+			"label": "Image Desktop"
+		},
+		{
+			"type": "image_picker",
+			"id": "works-mobile",
+			"label": "Image Mobile"
+		}
+	],
+	"presets": [
+		{
+			"name": "How it Works",
+			"category": "image"
+		}
+	]
+  }
+{% endschema %}
+

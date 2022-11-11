@@ -1,0 +1,126 @@
+<style>
+  @media (max-width: 749px){
+    .container-desktop{
+      display: none;
+    }
+    .container-mobile{
+      display: block;
+    }
+    .container-mobile {
+    padding: 0 0px !important;
+  }
+   .horizontalLine {
+    margin: 16px 0 16px 0!important;
+  }
+  }
+   @media (min-width: 749px){
+    .container-desktop{
+      display: block;
+      flex: 50%;
+      padding: 0 20px 0 20px;
+    }
+     .seo_container{
+       display: flex;
+       flex-wrap: wrap;
+       padding: 16px 0;
+     }
+    .container-mobile{
+      display: none;
+    }
+  }
+  .seo_container{
+    background: {{ section.settings.seo_background }};
+  }
+  .container-mobile{
+    padding: 0 10px;
+  }
+  .horizontalLine{
+     margin: 20px 0 40px 0!important;
+     border: 0;
+     border-top: 1px solid #e5e5e5;
+  }
+  .container-mobile .heading,.container-desktop .heading_desktop{
+    color: {{ section.settings.seo_heading_color }};
+    font-size: 12px !important;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    line-height: 20px;
+    font-weight: 600;
+  }
+  .container-mobile p,.container-desktop p{
+    color: {{ section.settings.seo_content_color }};
+    margin: 0 0 10px 0;
+    font-size: 12px !important;
+    line-height: 20px;
+  }
+</style>
+<div class="container">
+<div class="seo_container">
+  <hr class="horizontalLine">
+  {% for block in section.blocks %}
+  {% case block.type %}
+  {% when 'text' %}
+  {% if block.settings.seo_heading != blank %}
+      <div class="container-mobile">
+        <h4 class="heading">{{ block.settings.seo_heading }}</h4>
+        <p class="seo_content">{{ block.settings.seo_content }}</p>
+      </div>
+	 
+      <div class="container-desktop">
+          <h4 class="heading_desktop">{{ block.settings.seo_heading }}</h4>
+          <p class="seo_content_desktop">{{ block.settings.seo_content }}</p>
+      </div>
+  {% endif %}
+  {% endcase %}
+  {% endfor %}
+</div>
+ </div>
+
+
+{% schema %}
+  {
+    "name": "SEO Footer",
+    "settings": [
+		{
+			"type": "color",
+			"id": "seo_background",
+			"label": "Background Color"
+		},
+		{
+			"type": "color",
+			"id": "seo_heading_color",
+			"label": "Heading Color"
+		},
+		{
+			"type": "color",
+			"id": "seo_content_color",
+			"label": "Content Color"
+		}
+	],
+	"blocks": [
+		{
+          "name": "Information",
+		  "type": "text",
+          "settings": [
+              {
+                  "type": "text",
+                  "id": "seo_heading",
+                  "label": "Heading"
+              },
+              {
+                  "type": "richtext",
+                  "id": "seo_content",
+                  "label": "Content"
+              }
+          ]
+		}
+	],
+	"presets":[
+		{
+          "name": "SEO Footer",
+          "category": "text"
+		}
+	]
+  }
+{% endschema %}
+

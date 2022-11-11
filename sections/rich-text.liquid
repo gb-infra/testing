@@ -1,0 +1,166 @@
+<style>
+  .rich-text-background{
+    background-color: {{ section.settings.background_color }};
+    padding: 15px;
+    text-align: center;
+    font-family: 'Poppins';
+  }
+  .rich-text-subtitle{
+    display: block;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+  }
+  .rich-text-heading{
+    font-size: 24px !important;
+    font-style: normal;
+    font-weight: 600;
+    padding-bottom: 15px;
+    line-height: 36px;
+    color: {{ section.settings.heading_color }};
+  }
+  .richtext-content{
+    font-size: 12px !important;
+    font-weight: 400;
+    font-style: normal;
+    font-family: 'Poppins';
+    color: {{ section.settings.content_color }};
+    padding: 15px 0;
+    line-height: 21px;
+    letter-spacing: 0.48px;
+  }
+  .richtext-content p{
+    width: 70%;
+  }
+  .rte-mobile{
+    display: none;
+  }
+  .rte-desktop{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .rte_btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .rte_btn button{
+    text-transform: capitalize;
+    color: {{ section.settings.button_font_color }};
+    background-color: {{ section.settings.button_background }};
+    padding: 10px 35px;
+    border-radius: 0;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .section_title {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 45px;
+    color: #232323;
+    font-weight: 600;
+}
+  @media (max-width: 749px){
+    .rich-text-heading{
+      font-size: 16px !important;
+      font-weight: 600;
+      line-height: 24px;
+    }
+    .richtext-content p{
+      font-size: 12px !important;
+      font-weight: 400;
+      padding: 0px 5px;
+      width: 100%;
+    }
+    .rte_btn button{
+      padding: 8px 26px;
+      font-size: 16px;
+    }
+  }
+</style>
+<section class="rich-text-background">
+    {%- if section.settings.subtitle != blank -%}
+    <span class="rich-text-subtitle">{{ section.settings.subtitle | escape }}</span>
+    {%- endif -%}
+    {%- if section.settings.title != blank -%}
+      <span class="rich-text-heading">{{ section.settings.title | escape }}</span>
+    {%- endif -%}
+    {%- if section.settings.richtext_desktop != blank -%}
+      <div class="rte richtext-content rte-desktop">
+        {{ section.settings.richtext_desktop }}
+      </div>
+    {%- endif -%}
+  <div class="rte_btn"> 
+     <a href="{{ section.settings.button_link }}"> 
+       <button>{{ section.settings.button_text }}</button>
+    </a>
+   </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Rich text",
+    "settings": [
+	  {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Sub-Heading",
+        "default": "Your Story"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Talk about your brand"
+      },
+	  {
+	  	"type": "color",
+  		"id": "heading_color",
+  		"label": "Heading Color",
+  		"default": "#ffffff"
+	  },
+	  {
+        "type": "richtext",
+        "id": "richtext_desktop",
+        "label": "Text",
+        "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+      },
+	  {
+	  	"type": "color",
+  		"id": "content_color",
+  		"label": "Text Color",
+  		"default": "#3d4246"
+	  },
+	  {
+	  	"type": "color",
+  		"id": "background_color",
+  		"label": "Background Color",
+  		"default": "#3d4246"
+	  },
+	  {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button Text"
+      },
+	  {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button Link"
+      },
+	  {
+        "type": "color",
+        "id": "button_background",
+        "label": "Button Background"
+      },
+	  {
+        "type": "color",
+        "id": "button_font_color",
+        "label": "Button Font Color"
+      }
+    ],
+    "presets": [{
+        "name": "Rich text",
+        "category": "Text"
+    }]
+  }
+{% endschema %}

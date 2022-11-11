@@ -1,0 +1,220 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Advent+Pro&family=Poppins:wght@100&display=swap" rel="stylesheet">
+
+<style>
+  .use-container{
+    background-color: #11897A;
+    background-image: url(https://cdn.shopify.com/s/files/1/0633/3730/0223/t/2/assets/Group_20283.png?v=1647415333);
+  	background-blend-mode: normal;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+  }
+  .category-image{
+    margin-bottom: 28px;
+  }
+  .text-container{
+    padding: 60px;
+    text-align: -webkit-center;
+  }
+  .section-heading{
+   	font-family: 'Advent Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 120%;
+    text-align: center;
+    color: #FFFFFF;
+  }
+  .section-subheading + p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 33px;
+    text-align: center;
+    color: #FFFFFF;
+    width: 72%;
+  }
+  .section-bottom{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 33px;
+    text-align: center;
+    color: #FFFFFF;
+    text-decoration: underline;
+  }
+  .category-container{
+    width: 80%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-evenly;
+    padding: 20px 0 80px 0;
+    margin: auto;
+  }
+/*   .category-button:hover{
+    border: none;
+    background-color: #F0F0F0;
+  } */
+  .category-card{
+    margin-bottom: 28px;
+  }
+  .category-image{
+    min-height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .category-button{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    border: 1px solid white;
+    border-radius: 32px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .category-button a{
+    color: white;
+    padding: 6px 20px;
+    display: block;
+  }
+  .category-button a:hover{
+    color: #11897A;
+    border: none;
+    background-color: #fff;
+  }
+  @media (max-width: 769px){
+    .section-heading{
+      font-size: 28px;
+      text-align: left;
+      margin-bottom: 8px;
+    }
+    .text-container{
+      padding: 20px 16px;
+    }
+    .section-subheading + p,.section-bottom{
+      font-size: 14px;
+      text-align: left;
+      width: 100%;
+      line-height: 21px;
+      font-weight: 300;
+    }
+    .text-container{
+      text-align: -webkit-left;
+    }
+    .section-bottom{
+      text-align: left;
+      font-size: 14px;
+      line-height: 21px;
+      font-weight: 300;
+    }
+    .category-icon{
+      max-width: 60%;
+    }
+    .category-container{
+      grid-template-columns: auto auto;
+      width: 90%;
+    }
+    .use-container{
+      background-image: url(https://cdn.shopify.com/s/files/1/0633/3730/0223/t/2/assets/Rectangle_1728.png?v=1647938241);
+    }
+    .category-card{
+      margin: 10px;
+    }
+    .category-button a{
+      font-size: 14px;
+      padding: 0px;
+    }
+    .category-button{
+      padding: 6px 24px;
+    }
+    .category-image{
+      position: relative;
+    }
+    .category-image img{
+      position: absolute;
+      bottom: 0;
+      max-width: 100%;
+    }
+  }
+</style>
+
+<div class="use-container">
+  <div class="text-container">
+    <p class="section-heading">{{ section.settings.section_heading }}</p>
+    <p class="section-subheading">{{ section.settings.section_content }}</p>
+    <p class="section-bottom">{{ section.settings.section_bottom }}</p>
+  </div>
+  <div class="category-container">
+    {% for block in section.blocks %}
+    {% if block.settings.category_icon != blank %}
+    <div class="category-card">
+      <div class="category-image">
+      	<img class="category-icon" src="{{ block.settings.category_icon | img_url: 'x150' }}">
+      </div>
+      <div class="category-button">
+      	<a href="{{ block.settings.category_link }}">{{ block.settings.button_text }}</a>
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Where to use",
+    "settings": [
+		{
+			"type": "text",
+			"id": "section_heading",
+			"label": "Heading"
+		},
+		{
+			"type": "richtext",
+			"id": "section_content",
+			"label": "Richtext"
+		},
+		{
+			"type": "text",
+			"id": "section_bottom",
+			"label": "Bottom line"
+		}
+	],
+	"blocks": [
+		{
+			"name": "Add Category",
+			"type": "image_picker",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "category_icon",
+					"label": "Category Image"
+				},
+				{
+					"type": "text",
+					"id": "button_text",
+					"label": "Button Text"
+				},
+				{
+					"type": "url",
+					"id": "category_link",
+					"label": "Button Link"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "Where to use",
+			"category": "text"
+		}
+	]
+  }
+{% endschema %}

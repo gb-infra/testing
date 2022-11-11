@@ -1,0 +1,125 @@
+<style>
+  .faq-outerdiv{
+    background-image: url(https://cdn.shopify.com/s/files/1/0633/3730/0223/t/2/assets/Frame_20088.png?v=1647344333);
+    background-repeat: no-repeat;
+    background-position: right;
+    min-height: 692px;
+    padding: 100px;
+  }
+  .faq-heading{
+    font-family: 'Poppins', sans-serif;
+	font-Weight: 700;
+    font-style: normal;
+	font-size: 32px; 
+	line-height: 27px;
+  }
+  .faq-container{
+    margin: 30px 0;
+  }
+    /* Style the buttons that are used to open and close the accordion panel */
+  .accordion {
+    color: #444;
+    cursor: pointer;
+    padding: 24px 0;
+    width: 50%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    font-family: 'poppins';
+    font-weight: 500;
+    border-bottom: 1px solid lightgray;
+    border-radius: 0px;
+    font-size: 16px;
+  }
+
+  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+  .active, .accordion:hover {
+/*     background-color: #ccc; */
+  }
+
+  /* Style the accordion panel. Note: hidden by default */
+  .panel {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    width: 50%;
+    font-family: 'poppins';
+    font-weight: 300;
+  }
+  .panel p {
+    font-family: 'Poppins';
+    padding: 10px 0;
+    line-height: 18px;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+  }
+    
+</style>
+
+<div class="faq-outerdiv">
+  <h1 class="faq-heading">FAQ</h1>
+  <div class="faq-container">
+    {% for block in section.blocks %}
+    {% if block.settings.faq-question != blank %}
+      <button class="accordion">{{ block.settings.faq-question }}</button>
+      <div class="panel">
+        <p>{{ block.settings.faq-answer }}</p>
+      </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    /* Toggle between adding and removing the "active" class,
+    to highlight the button that controls the panel */
+    this.classList.toggle("active");
+
+    /* Toggle between hiding and showing the active panel */
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>                           
+                           
+{% schema %}
+  {
+    "name": "Absorbia FAQ",
+    "settings": [],
+	"blocks": [
+	  {
+		"type": "text",
+		"name": "Add Question",
+		"settings": [
+			{
+              "type": "text",
+              "id": "faq-question",
+              "label": "Faq Question"
+			},
+			{
+              "type": "richtext",
+              "id": "faq-answer",
+              "label": "Faq Answer"
+			}
+		 ]
+	  }
+	],
+	"presets":[
+		{
+			"name": "Absorbia FAQ",
+			"category": "text"
+		}
+	]
+  }
+{% endschema %}
+

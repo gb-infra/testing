@@ -1,0 +1,287 @@
+<style>
+  .combo-container{
+    font-family: 'Poppins' !important;
+  }
+  .uk-position-relative{
+    max-width: max-content;
+    margin: auto;
+    padding: 0 10px;
+  } 
+   .card_img{
+  width: 100%;
+  }
+  .si{
+    padding-left: 3px;
+    width: 33.3%;
+    min-width: 320px !important;
+    max-width: 400px !important;
+  }
+  .outer-trending{
+  	width: 100%;
+  }
+  .items-cont2{
+    width: 80%;
+    margin: auto;
+  }
+  .head4{
+    font-size: 24px !important;
+    margin: auto;
+    max-width: max-content;
+    margin-bottom: 16px !important;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-family: 'Poppins', sans-serif !important;
+  }
+  .head5{
+    font-size: 19px !important;
+    margin: auto;
+    max-width: max-content;
+    margin-bottom: 20px !important;
+    font-weight: 900;
+    text-transform: capitalize;
+    font-family: 'Poppins', sans-serif !important;
+    display: none;
+  }
+  .view-all{
+    font-family: 'Poppins';
+    text-align: center;
+    text-decoration: underline;
+        margin-bottom: 16px;
+  }
+  @media only screen and (max-width: 600px){
+    .items-cont{
+    	width: 100%;
+    }
+    .uk-position-relative{
+      width: 100% !important;
+      padding: 0 10px;
+    } 
+    .head4{
+      display: none;
+    }
+    .combo_container .head5{
+   	  display: block;
+      margin-bottom: 8px !important;
+      margin-top: 16px;
+      font-size: 16px !important;
+     font-weight: 600;
+    }
+    .combo_container {
+      margin-bottom: 16px;
+    }
+  }
+  
+  @media (max-width: 768px){
+    .outer-trending{
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media (min-width: 769px){
+    .combo_container{
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+    .head4{
+      margin-top: 40px;
+    }
+    .head5{
+      margin-top: 10px;
+    }
+    .outer-trending{
+      margin-bottom: 60px;
+    }
+  }
+  .xyz{
+    margin:auto 13vw; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 0;
+  }
+  .xyz div{
+    padding: 0 5px;
+  }
+  .owl-nav img {
+    width: 16px;
+  }
+  .combo_container .owl-nav .owl-prev {
+    position: absolute !important;
+    top: 45%;
+    left: -10px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    background-color: #fff !important;
+    z-index: 999 !important;
+    font-weight: 900;
+    color: black;
+    box-shadow: 1px 1px 5px #0000007a !important;
+    visibility: initial !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+  }
+  .combo_container .owl-nav .owl-next {
+    position: absolute !important;
+    top: 45%;
+    right: -10px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    background-color: #fff !important;
+    z-index: 999 !important;
+    font-weight: 900;
+    color: black;
+    box-shadow: 1px 1px 5px #0000007a !important;
+    visibility: initial !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+  }
+  .combo_container .owl-dots {
+    display: none;
+  }
+  @media only screen and (max-width: 749px){
+    .xyz{
+      margin: auto 4vw;
+    }
+    .owl-nav {
+      display: none;
+    }
+    .container_combo{
+          padding: 0;
+    }
+  }
+  .card_img_desktop{
+    display: none !important;
+  }
+  .card_img_mobile{
+    display: block !important;
+  }
+  @media (min-width: 748px){
+    .card_img_desktop{
+      display: block !important;
+    }
+    .card_img_mobile{
+      display: none !important;
+    }
+  }
+  .card_img_desktop,.card_img_mobile{
+    padding: 0 5px;
+  }
+  .kit_container{
+    margin-top: 5px;
+  }
+</style>
+<div class="container container_combo">
+<div class="combo_container">
+    <div class="head4">
+<!--       <span class="collection-products__slider-arrow collection-products__slider-arrow--prev js-collection-products-prev"> &#60;&nbsp;&nbsp;&nbsp;&nbsp; </span> -->
+        {{ section.settings.heading }}
+<!--       <span class="collection-products__slider-arrow collection-products__slider-arrow--next js-collection-products-next"> &nbsp;&nbsp;&nbsp;&nbsp;&#62; </span> -->
+    </div>
+    <div class="head5">
+<!--       <span class="collection-products__slider-arrow collection-products__slider-arrow--prev js-collection-products-prev"> &#60;&nbsp;&nbsp; </span> -->
+        {{ section.settings.heading }}
+<!--       <span class="collection-products__slider-arrow collection-products__slider-arrow--next js-collection-products-next">&nbsp;&nbsp;&#62; </span> -->
+    </div>
+    <a href="{{ section.settings.view_link }}">
+      <p class="view-all">View all</p>
+    </a>
+  
+ 		 <div class="collection-products__slider-wrapper kit_container">
+				<div class="owl-carousel" id="homeSlide">
+					{% for block in section.blocks %}
+                    {% case block.type %}
+                    {% when 'slide' %}
+                    {% if block.settings.product_image_desktop != blank %}
+                      <div>
+                        <a href=" {{ block.settings.product_link }} ">
+                          <img class="card_img_desktop" src="{{ block.settings.product_image_desktop |  img_url: 'master' }}" alt=""/>
+                          <img class="card_img_mobile" src="{{ block.settings.product_image_mobile |  img_url: 'master' }}" alt=""/>
+                        </a>
+                      </div>
+                    {% endif %}
+                    {% endcase %}
+                    {% endfor %}
+				</div>
+			</div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script>
+  
+  $('#homeSlide').owlCarousel({
+    loop:true,
+    margin:1,
+    nav:true,
+    navText: ["<img src='https://cdn.shopify.com/s/files/1/0007/2659/7747/files/right-arrow_2.png?v=1632909988'>","<img src='https://cdn.shopify.com/s/files/1/0007/2659/7747/files/right-arrow_2_1.png?v=1632910057'>"],
+    responsive:{
+        0:{
+            items:1.5
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:3
+        }
+    }
+})
+</script>
+
+{% schema %}
+  {
+    "name": "Product Slider",
+    "settings": [
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Slider Heading"
+		},
+		{
+			"type": "url",
+			"id": "view_link",
+			"label": "View All Link"
+		}
+	],
+	"blocks": [
+		{
+			"name": "Product",
+			"type": "slide",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "product_image_desktop",
+					"label": "Image Desktop"
+				},
+				{
+					"type": "image_picker",
+					"id": "product_image_mobile",
+					"label": "Image Mobile"
+				},
+				{
+					"type": "url",
+					"id": "product_link",
+					"label": "Product Link"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "Product Slider",
+			"category": "Collections"
+		}
+	]
+  }
+{% endschema %}

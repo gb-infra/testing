@@ -1,0 +1,147 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Advent+Pro&family=Poppins:wght@100&display=swap" rel="stylesheet">
+
+<style>
+  .clp-heading{
+    font-family: 'Advent Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 54px;
+    line-height: 120%;
+    color: #464856;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 32px 0 12px 0;
+  }
+  .tabs-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 20px;
+  }
+  .category-tabs{
+    padding: 8px 12px;
+    margin: 4px;
+  }
+  .tabs{
+    border-radius: 20px;
+    white-space: nowrap;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 120%;
+    text-align: center;
+    color: #000000;
+    padding: 4px 46px;
+    border: 1px solid #000000;
+  }
+  .category-tabs.highlight a{
+    background-color: #11987a;
+    color: #fff;
+    border: none !important;
+  }
+  @media (max-width: 769px){
+    .clp-heading{
+      margin: 12px 0;
+      margin-top: 20px;
+    }
+    .tabs-container{
+      display: flex;
+      margin: 0 8px;
+      align-items: center;
+    }
+    .category-tabs{
+      margin: 4px;
+      text-align: center;
+    }
+    .tabs{
+      white-space: nowrap;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 120%;
+      text-align: center;
+      color: #000000;
+      padding: 8px 16px;
+    }
+  }
+</style>
+
+
+
+  <h1 class="clp-heading">{{ section.settings.clp-heading }}</h1>
+  <div class="tabs-container">
+    {% for block in section.blocks %}
+    	<div class="category-tabs">
+          <a class="tabs" onclick="highlight()" href={{ block.settings.tab_link}}>{{ block.settings.tab_text }}</a>
+    	</div>
+    {% endfor %}
+  </div>
+
+<script>
+  
+    var pageURL = window.location.pathname;
+    var lastURLSegment = pageURL.substr(pageURL.lastIndexOf('/') + 1);
+    console.log(lastURLSegment);
+
+    const url = window.location.href;
+    url.split("/").pop(); 
+    const secondlastSegment = url.split("/").pop();
+    console.log(secondlastSegment); 
+  
+  	if(lastURLSegment == 'all-products')
+      $(".category-tabs:nth-child(1)").addClass("highlight");
+    else if(lastURLSegment == 'kitchen')
+      $(".category-tabs:nth-child(2)").addClass("highlight");
+    else if(lastURLSegment == 'bathroom-kit')
+        $(".category-tabs:nth-child(3)").addClass("highlight");
+    else if(lastURLSegment == 'living-room-kit')
+        $(".category-tabs:nth-child(4)").addClass("highlight");
+    else if(lastURLSegment == 'dining-room')
+        $(".category-tabs:nth-child(5)").addClass("highlight");
+    else if(lastURLSegment == 'bedroom-kit')
+        $(".category-tabs:nth-child(6)").addClass("highlight");
+    else if(lastURLSegment == 'wardrobe-storages')
+        $(".category-tabs:nth-child(7)").addClass("highlight");
+</script>
+
+{% schema %}
+  {
+    "name": "CLP Filters",
+    "settings": [
+		{
+			"type": "text",
+			"id": "clp-heading",
+			"label": "heading"
+		}
+	],
+	"blocks": [
+		{
+          "name": "Add Category",
+          "type": "text",
+          "settings": [
+			{
+              "type": "text",
+              "id": "tab_text",
+			  "label": "Tab Text"
+			},
+			{
+              "type": "url",
+              "id": "tab_link",
+			  "label": "Tab Link"
+			}
+          ]
+		}
+	],
+	"presets": [
+		{
+          "name": "CLP Filters",
+          "category": "text"
+		}
+	]
+  }
+{% endschema %}
+

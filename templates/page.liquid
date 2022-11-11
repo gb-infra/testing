@@ -1,0 +1,134 @@
+<style>
+  
+  .h4{
+    font-weight: bold;
+    font-family: Poppins;
+    font-style: normal;
+    font-size: 10px !important;
+  }
+  
+  .infopara {
+    font-family: Poppins !important;
+    font-style: normal;
+    margin-bottom: 20px;
+    font-size: 8px !important;
+  }
+  
+  .infoPara{
+    margin: 0 0 15px 0;
+    font-size: 12px !important;
+  }
+  .info h4,p {
+    color: #6D7278;
+    line-height: 20px;  
+  }
+  .info h4 {
+    font-size: 12px !important;
+    margin-bottom: 5px;
+    margin-top: 15px;   
+  }
+ .product-grid-item .product-grid-item__image img {
+    width: 100%;
+    transition: transform .8s;
+    visibility: initial;
+ }  
+  @media screen and (min-width: 768px){ 
+    .mob{
+      display: none !important;
+    }  
+    .info{
+      display: flex;
+      justify-content: center;
+      padding: 0 10px;
+    }
+    .info1{
+      display: inline-block;
+      min-width: 371px;
+      width: 40%;
+      max-width: 700px;
+      margin-right: 13px;
+    }  
+    .info2{
+      display: inline-block;
+      min-width: 371px;
+      width: 40%;
+      max-width: 700px;
+      margin-left: 13px;
+    }
+    .info{
+      margin-bottom: 40px;
+    }
+  }
+  
+  @media screen and (max-width: 768px){
+    
+    .desk{
+      display: none !important;
+    }
+    .info1,.info2{
+      padding: 0 10px;
+    }
+    .info{
+      margin-bottom: 30px;
+    }
+  }
+  .line {
+    margin: 50px 0 !important;
+  }
+  .desktop, .mobile {
+    padding-top: 40px;
+  }
+  .hrLine{
+    margin: 0px;
+    border-top: 1px solid #E3E3E3;
+    border-bottom: none;
+  }
+  .breadcrumb{
+    text-align: center;
+    margin: 25px 0;
+  }
+</style>
+<div class="container  header-space">
+  	{% include 'breadcrumb' %}
+  <div class="grid">
+    <div class="grid__item large--one-whole page--item">
+      <h1>{{ page.title }}</h1>
+        {% assign my_collection_description = page.content | split: '<!-- split -->' %}
+		{% if page.content != blank %}
+			<div class="rte">
+				{{ my_collection_description[0] }}
+			</div>
+		{% endif %}
+    </div>
+  </div>
+</div> 
+
+{% if page.url contains 'our-story' %}
+<style>
+  .product_Name {
+    margin-top: 0 !important;
+    margin-bottom: 0;
+}
+  .product-grid-item__product-name_para {
+    min-height: initial !important;
+    margin-bottom: 0;
+}
+</style>
+{% section 'collection' %}
+
+<hr class="desk " style="margin: 65px 0 " >
+<hr class="mob " style="margin: 25px 0 40px 0 " >
+
+{% endif %}
+
+{{ my_collection_description[1] }}
+
+{% if page.url contains 'our-story' %}
+
+<hr class="desk " style="margin: 65px 0 80px 0 " >
+<hr class="mob " style="margin: 40px 0 5px 0 " >
+
+{%else%}
+<hr class="desk" style="margin: 25px 0 40px 0" >
+<hr class="mob" style="margin: 25px 0 5px 0" >
+{% endif %}

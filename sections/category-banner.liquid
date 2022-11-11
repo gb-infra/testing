@@ -1,0 +1,58 @@
+<style> 
+  @media (max-width: 768px){
+    .desk{
+      display: none;
+    }
+    .mob .all img{
+      display: block;
+    }
+  }
+  
+  @media (min-width: 768px){
+    .mob{
+      display: none;
+    }
+    .desk img{
+      width: 100%;
+    }
+  }
+</style>
+
+<div>
+  
+  {% assign category_banner = collection.metafields.my_fields.category_banner %}
+  <div class="desk">
+    {% if collection.image %}
+    {{ collection.image | img_url: '2048x' | img_tag }}
+    {% endif %}    
+  </div>
+
+  {%- if section.settings.img_for_mobile != blank -%} 
+  <div class="mob">
+   <div class="all">
+   	<img src="{{ section.settings.img_for_mobile | img_url: 'master' }}"/>
+   </div>
+  </div>
+  {%- endif -%}
+  
+</div>
+
+{% schema %}
+  {
+    "name": "Category Banner",
+    "settings": [
+			{
+                "type": "image_picker",
+                "id": "img_for_mobile",
+                "label": "Banner for Mobile"
+               }
+		],
+		"presets": [
+		{
+			"name": "Category Banner",
+			"category": "Banner"
+		}
+	]
+  }
+{% endschema %}
+

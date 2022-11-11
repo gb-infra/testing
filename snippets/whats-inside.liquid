@@ -1,0 +1,71 @@
+<style>
+  .pointer{
+  	font-size:14px; 
+    padding:13px; 
+    margin:15px; 
+    background:white; 
+    color:#6D7278;
+  }
+  .inside-container{
+    background: #ececec; 
+    padding: 54px 0px; 
+    text-align:center;
+  }
+  .tab-inside-container,.tab-kept-out-container{
+    display: flex;
+    justify-content: center;
+    padding: 20px 15%;
+    flex-flow: wrap;
+    margin-bottom:25px;
+  }
+</style>
+{% if product.metafields.my_fields.inside != blank %}
+<div class="inside-container">
+  <h2 class="inside-heading">What's Inside:</h2>
+  {% assign inside_tab = product.metafields.my_fields.inside | split: ',' %}
+  <div class="tab-inside-container">
+    {% if inside_tab[0] != blank %}
+    	<div class="pointer">{{ inside_tab[0] }}</div> 
+    {% endif %}
+    {% if inside_tab[1] != blank %}
+    	<div class="pointer">{{ inside_tab[1] }}</div>
+    {% endif %}
+    {% if inside_tab[2] != blank %}
+    	<div class="pointer">{{ inside_tab[2] }}</div>
+     {% endif %}
+    {% if inside_tab[3] != blank %}
+    	<div class="pointer">{{ inside_tab[3] }}</div>
+    {% endif %}
+    {% if inside_tab[4] != blank %}
+    	<div class="pointer">{{ inside_tab[4] }}</div>
+    {% endif %}
+    {% if inside_tab[5] != blank %}
+    	<div class="pointer">{{ inside_tab[5] }}</div>
+    {% endif %}
+  </div>
+  {% if product.metafields.my_fields.kept_out != blank %}
+  <h2 class="inside-heading">What's kept out:</h2>
+  {% assign kept_out_tab = product.metafields.my_fields.kept_out | split: ',' %}
+  <div class="tab-kept-out-container">
+    {% if kept_out_tab[0] != blank %}
+    	<div class="pointer">{{ kept_out_tab[0] }}</div> 
+    {% endif %}
+    {% if kept_out_tab[1] != blank %}
+    	<div class="pointer">{{ kept_out_tab[1] }}</div>
+    {% endif %}
+    {% if kept_out_tab[2] != blank %}
+    	<div class="pointer">{{ kept_out_tab[2] }}</div>
+     {% endif %}
+    {% if kept_out_tab[3] != blank %}
+    	<div class="pointer">{{ kept_out_tab[3] }}</div>
+    {% endif %}
+    {% if kept_out_tab[4] != blank %}
+    	<div class="pointer">{{ kept_out_tab[4] }}</div>
+    {% endif %}
+    {% if kept_out_tab[5] != blank %}
+    	<div class="pointer">{{ kept_out_tab[5] }}</div>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+{% endif %}
